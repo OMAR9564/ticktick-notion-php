@@ -1,1 +1,1 @@
-# -ticktick-notion-php
+# ticktick-notion-php
