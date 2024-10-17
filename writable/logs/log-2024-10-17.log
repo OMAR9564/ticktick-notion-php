@@ -15,3 +15,635 @@ WARNING - 2024-10-17 09:28:22 --> [DEPRECATED] Creation of dynamic property App\
  5 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  6 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
  7 SYSTEMPATH/rewrite.php(44): require_once('/Users/omerfaruk/Documents/GitHub/ticktick-notion-php/public/index.php')
+CRITICAL - 2024-10-17 10:10:28 --> Error: Class "Locale" not found
+[Method: GET, Route: /]
+in SYSTEMPATH\CodeIgniter.php on line 190.
+ 1 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->initialize()
+ 2 SYSTEMPATH\Boot.php(101): CodeIgniter\Boot::initializeCodeIgniter()
+ 3 ROOTPATH\spark(84): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2024-10-17 10:10:28 --> ErrorException: Uncaught Error: Class "Locale" not found in C:\Users\faruk\Documents\github\ticktick-notion-php\system\I18n\TimeTrait.php:76
+Stack trace:
+#0 C:\Users\faruk\Documents\github\ticktick-notion-php\system\I18n\TimeTrait.php(117): CodeIgniter\I18n\Time->__construct()
+#1 C:\Users\faruk\Documents\github\ticktick-notion-php\system\HTTP\ResponseTrait.php(395): CodeIgniter\I18n\Time::now()
+#2 C:\Users\faruk\Documents\github\ticktick-notion-php\system\HTTP\ResponseTrait.php(373): CodeIgniter\HTTP\Response->sendHeaders()
+#3 C:\Users\faruk\Documents\github\ticktick-notion-php\system\Debug\ExceptionHandler.php(83): CodeIgniter\HTTP\Response->send()
+#4 C:\Users\faruk\Documents\github\ticktick-notion-php\system\Debug\Exceptions.php(163): CodeIgniter\Debug\ExceptionHandler->handle()
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler()
+#6 {main}
+  thrown
+【Previous Exception】
+Error
+Class "Locale" not found
+#0 C:\Users\faruk\Documents\github\ticktick-notion-php\system\Boot.php(312): CodeIgniter\CodeIgniter->initialize()
+#1 C:\Users\faruk\Documents\github\ticktick-notion-php\system\Boot.php(101): CodeIgniter\Boot::initializeCodeIgniter()
+#2 C:\Users\faruk\Documents\github\ticktick-notion-php\spark(84): CodeIgniter\Boot::bootSpark()
+#3 {main}
+[Method: GET, Route: /]
+in SYSTEMPATH\I18n\TimeTrait.php on line 76.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+WARNING - 2024-10-17 10:20:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$redirectUri is deprecated in APPPATH\Controllers\Home.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:20:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:23:53 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$redirectUri is deprecated in APPPATH\Controllers\Home.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:24:03 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$redirectUri is deprecated in APPPATH\Controllers\Home.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:24:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:25:17 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$redirectUri is deprecated in APPPATH\Controllers\Home.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:25:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:38:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:46:39 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:46:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:46:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:46:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:46:43 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:46:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:46:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:46:48 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:46:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:50:22 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:50:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:50:24 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:50:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:50:25 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:50:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:52:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:52:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:52:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:52:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:57:42 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:57:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:57:44 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:57:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:57:51 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:57:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:58:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:58:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:58:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:58:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:58:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:58:14 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:58:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:58:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:58:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:58:33 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:58:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:58:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:58:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:58:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:59:29 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:59:29 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:59:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:59:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:59:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 10:59:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:59:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 10:59:51 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 10:59:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:00:08 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:00:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:00:10 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 11:00:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:00:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:00:14 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:00:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:01:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 11:01:40 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:01:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:01:40 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:01:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:01:44 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:01:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:02:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 11:02:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:02:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:02:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:02:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:02:26 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:02:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:02:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 11:02:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:02:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:02:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:02:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:03:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:03:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:03:14 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:03:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:05:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:05:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:05:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:05:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:05:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:05:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:08:35 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:08:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:08:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:08:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:10:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:10:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:10:15 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:10:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-17 11:10:16 --> TickTick API error: Server error: `GET https://api.ticktick.com/open/v1/task` resulted in a `500 Internal Server Error` response:
+{"errorId":"jw86est8@erver-15","errorCode":"unknown_exception","errorMessage":"Unknown exception","data":null}
+
+CRITICAL - 2024-10-17 11:10:16 --> RuntimeException: Error fetching tasks from TickTick: Server error: `GET https://api.ticktick.com/open/v1/task` resulted in a `500 Internal Server Error` response:
+{"errorId":"jw86est8@erver-15","errorCode":"unknown_exception","errorMessage":"Unknown exception","data":null}
+
+[Method: POST, Route: sync-tasks]
+in APPPATH\Controllers\IntegrationController.php on line 137.
+ 1 APPPATH\Controllers\IntegrationController.php(86): App\Controllers\IntegrationController->getTickTickTasks()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\IntegrationController->syncTasks()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-10-17 11:10:55 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:10:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:10:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:10:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:23:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:23:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:24:35 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:24:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:24:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:24:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:25:52 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:25:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:25:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:26:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-10-17 11:26:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\IntegrationController::$redirectUri is deprecated in APPPATH\Controllers\IntegrationController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\IntegrationController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-10-17 11:26:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

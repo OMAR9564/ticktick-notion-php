@@ -1,0 +1,3 @@
+__ci_last_regenerate|i:1729164239;_ci_previous_url|s:43:"http://localhost:8080/index.php/integration";ticktick_access_token|s:36:"3dcf0f8f-5487-4b90-aa9e-9308ade271c1";integration_active|b:1;sync_error|s:242:"Error syncing tasks: Server error: `GET https://api.ticktick.com/open/v1/task` resulted in a `500 Internal Server Error` response:
+{"errorId":"u316ptqc@erver-15","errorCode":"unknown_exception","errorMessage":"Unknown exception","data":null}
+";__ci_vars|a:1:{s:10:"sync_error";s:3:"old";}
