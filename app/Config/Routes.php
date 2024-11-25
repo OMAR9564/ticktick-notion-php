@@ -5,11 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'IntegrationController::index');
-$routes->get('/integration', 'IntegrationController::index');
-$routes->get('/activate-integration', 'IntegrationController::activateIntegration');
-$routes->get('/deactivate-integration', 'IntegrationController::deActivateIntegration');
-$routes->post('/sync-tasks', 'IntegrationController::syncTasks');
-$routes->get('/handleCallback', 'IntegrationController::handleCallback');
-$routes->post('/callback', 'IntegrationController::callback');
-$routes->get('/callback', 'IntegrationController::callback');
+$routes->get('/', 'TickTickController::index'); // Ana sayfa (Listelerin görüntülendiği sayfa)
+$routes->get('ticktick', 'TickTickController::index'); // Listeleri çekmek için
+$routes->get('ticktick/authenticate', 'TickTickController::authenticate'); // OAuth işlemleri için
+$routes->get('ticktick/callback', 'TickTickController::callback'); // OAuth callback
+$routes->get('ticktick/showTasks/(:any)', 'TickTickController::showTasks/$1'); // Seçilen listenin görevlerini gösterir
