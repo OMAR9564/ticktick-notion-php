@@ -37,8 +37,8 @@ class TickTickController extends BaseController
         }
     }
 
-    // Seçilen listenin görevlerini gösterir
-    public function showTasks($listId)
+    // Seçilen proje verilerini getirir
+    public function showProjectData($projectId)
     {
         $accessToken = session()->get('ticktick_access_token');
 
@@ -47,11 +47,14 @@ class TickTickController extends BaseController
         }
 
         try {
-            $tasks = $this->getTickTickTasks($accessToken, $listId);
+            $projectData = $this->getProjectData($accessToken, $projectId);
 
-            return view('ticktick_tasks', ['tasks' => $tasks]);
+            // JSON formatında ekrana yazdırılır
+            return $this->response
+                ->setContentType('application/json')
+                ->setJSON($projectData);
         } catch (RequestException $e) {
-            return view('error', ['message' => 'Görevler alınamadı: ' . $e->getMessage()]);
+            return view('error', ['message' => 'Proje verileri alınamadı: ' . $e->getMessage()]);
         }
     }
 
@@ -99,18 +102,35 @@ class TickTickController extends BaseController
         return json_decode($response->getBody(), true);
     }
 
-    // Seçilen listenin görevlerini çeker
-    private function getTickTickTasks($accessToken, $listId)
-    {
-        $client = new Client();
-        $response = $client->request('GET', "https://api.ticktick.com/open/v1/task?projectId=$listId", [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken,
-            ],
-        ]);
+    // Bir projenin tüm verilerini çeker
+    private function getProjectData($accessToken, $projectId)
+{
+    $client = new Client();
 
-        return json_decode($response->getBody(), true);
-    }
+    // Aktif görevler
+    $activeResponse = $client->request('GET', "https://api.ticktick.com/open/v1/task?projectId=$projectId&status=0", [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $accessToken,
+        ],
+    ]);
+
+    // Tamamlanmış görevler
+    $completedResponse = $client->request('GET', "https://api.ticktick.com/open/v1/task?projectId=$projectId&status=1", [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $accessToken,
+        ],
+    ]);
+
+    $activeTasks = json_decode($activeResponse->getBody(), true);
+    $completedTasks = json_decode($completedResponse->getBody(), true);
+
+    // Aktif ve tamamlanmış görevleri birleştir
+    return [
+        'activeTasks' => $activeTasks,
+        'completedTasks' => $completedTasks,
+    ];
+}
+
 
     // OAuth Access Token alır
     private function getAccessToken($code)

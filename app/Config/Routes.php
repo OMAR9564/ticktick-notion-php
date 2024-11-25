@@ -9,4 +9,5 @@ $routes->get('/', 'TickTickController::index'); // Ana sayfa (Listelerin görün
 $routes->get('ticktick', 'TickTickController::index'); // Listeleri çekmek için
 $routes->get('ticktick/authenticate', 'TickTickController::authenticate'); // OAuth işlemleri için
 $routes->get('ticktick/callback', 'TickTickController::callback'); // OAuth callback
-$routes->get('ticktick/showTasks/(:any)', 'TickTickController::showTasks/$1'); // Seçilen listenin görevlerini gösterir
+// $routes->get('ticktick/showTasks/(:any)', 'TickTickController::showTasks/$1'); // Seçilen listenin görevlerini gösterir
+$routes->get('ticktick/showProjectData/(:any)', 'TickTickController::showProjectData/$1');

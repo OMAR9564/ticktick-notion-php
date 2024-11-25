@@ -67,3 +67,8 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+
+NOTION_API_TOKEN='secret_kWqvBKM3zXNjMbLjFrbyJo7UCGC00ot9lQOEzlnXd9q'
+TICKTICK_CLIENT_ID='Yiw5XbT5piBD6k7GaE'
+TICKTICK_CLIENT_SECRET='sZlc&y51SBa^kLUH^5LW^j^++68m462U'
+TICKTICK_REDIRECT_URI='http://localhost:8080/ticktick/callback'
