@@ -109,3 +109,11 @@ INFO - 2024-11-26 14:30:43 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-11-26 14:30:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-11-26 14:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-11-26 14:32:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-26 14:47:40 --> TickTick Login Error: Server error: `POST https://ticktick.com/api/v2/user/signon?wc=true&remember=true` resulted in a `500 Internal Server Error` response:
+{"errorId":"yywxc99c@tw11","errorCode":"access_forbidden","errorMessage":"access_forbidden","data":null}
+
+ERROR - 2024-11-26 14:47:40 --> Response Body: {"errorId":"yywxc99c@tw11","errorCode":"access_forbidden","errorMessage":"access_forbidden","data":null}
+ERROR - 2024-11-26 14:48:09 --> TickTick Login Error: Server error: `POST https://ticktick.com/api/v2/user/signon?wc=true&remember=true` resulted in a `500 Internal Server Error` response:
+{"errorId":"gwu4qthu@tw11","errorCode":"access_forbidden","errorMessage":"access_forbidden","data":null}
+
+ERROR - 2024-11-26 14:48:09 --> Response Body: {"errorId":"gwu4qthu@tw11","errorCode":"access_forbidden","errorMessage":"access_forbidden","data":null}

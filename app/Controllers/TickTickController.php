@@ -177,14 +177,22 @@ class TickTickController extends BaseController
         try {
             $client = new Client();
             $response = $client->post($this->loginUrl, [
-                'json' => [
-                    'email' => $this->email,
-                    'password' => $this->password,
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Origin' => 'https://ticktick.com',
+                    'Referer' => 'https://ticktick.com/'
                 ],
+                'json' => [
+                    'email' => $this->email,  // Changed from 'email' to 'username'
+                    'password' => $this->password,
+                    'remember' => true
+                ],
+                'verify' => false  // Disable SSL verification if needed
             ]);
             
             $body = json_decode($response->getBody(), true);
-    
+
             if (!empty($body['access_token'])) {
                 session()->set('ticktick_access_token', $body['access_token']);
                 return redirect()->to('/ticktick/tasks');
@@ -192,6 +200,10 @@ class TickTickController extends BaseController
                 return view('error', ['message' => 'Giriş başarısız oldu.']);
             }
         } catch (RequestException $e) {
+            // Log the full error details for debugging
+            log_message('error', 'TickTick Login Error: ' . $e->getMessage());
+            log_message('error', 'Response Body: ' . $e->getResponse()->getBody());
+
             return view('error', ['message' => 'Login işlemi sırasında hata oluştu: ' . $e->getMessage()]);
         }
     }
