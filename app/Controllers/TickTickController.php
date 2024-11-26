@@ -11,12 +11,18 @@ class TickTickController extends BaseController
     private $ticktickClientId;
     private $ticktickClientSecret;
     private $redirectUri;
+    private $loginUrl;
+    private $email;
+    private $password;
 
     public function __construct()
     {
+        $this->loginUrl = 'https://ticktick.com/api/v2/user/signon?wc=true&remember=true';
         $this->ticktickClientId = getenv('TICKTICK_CLIENT_ID');
         $this->ticktickClientSecret = getenv('TICKTICK_CLIENT_SECRET');
         $this->redirectUri = getenv('TICKTICK_REDIRECT_URI');
+        $this->email = getenv('TICKTICK_EMAIL');
+        $this->password = getenv('TICKTICK_PASSWORD');
     }
 
     // Ana sayfa: Listelerin çekildiği ve seçimin yapıldığı method
@@ -101,34 +107,6 @@ class TickTickController extends BaseController
 
         return json_decode($response->getBody(), true);
     }
-    // Bir projenin tüm verilerini çeker
-    private function getProjectData($accessToken, $projectId)
-{
-    $client = new Client();
-
-    // Aktif görevler
-    $activeResponse = $client->request('GET', "https://api.ticktick.com/open/v1/task?projectId=$projectId&status=0", [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-        ],
-    ]);
-
-    // Tamamlanmış görevler
-    $completedResponse = $client->request('GET', "https://api.ticktick.com/open/v1/task?projectId=$projectId&status=1", [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-        ],
-    ]);
-
-    $activeTasks = json_decode($activeResponse->getBody(), true);
-    $completedTasks = json_decode($completedResponse->getBody(), true);
-
-    // Aktif ve tamamlanmış görevleri birleştir
-    return [
-        'activeTasks' => $activeTasks,
-        'completedTasks' => $completedTasks,
-    ];
-    }
     // OAuth Access Token alır
     private function getAccessToken($code)
     {
@@ -151,24 +129,31 @@ class TickTickController extends BaseController
     }
     public function getProjectTasks($projectId)
     {
+        // Access Token'ı session'dan alın
         $accessToken = session()->get('ticktick_access_token');
-        if (!$accessToken) {
-            return redirect()->to('/ticktick/authenticate');
+
+        // Eğer Access Token yoksa, kullanıcıyı giriş sayfasına yönlendirin
+        if ($accessToken) {
+            return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
         }
 
         try {
             $client = new Client();
-
-            // Tamamlanmamış görevler (v1 API)
-            $activeResponse = $client->request('GET', "https://api.ticktick.com/api/v2/project/$projectId/tasks", [
+            
+            // Tamamlanmamış görevler (tasks)
+            $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/tasks", [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $accessToken,
                 ],
             ]);
             $activeTasks = json_decode($activeResponse->getBody(), true);
 
-            // Tamamlanmış görevler (v2 API)
-            $completedResponse = $client->request('GET', "https://api.ticktick.com/api/v2/project/all/completedInAll");
+            // Tamamlanmış görevler (completed)
+            $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken,
+                ],
+            ]);
             $completedTasks = json_decode($completedResponse->getBody(), true);
 
             // Görevleri birleştir
@@ -177,13 +162,39 @@ class TickTickController extends BaseController
                 'completedTasks' => $completedTasks ?? [],
             ];
 
-            // Verileri view dosyasına gönder
+            // Görevleri View'e gönder
             return view('ticktick_project_tasks', [
                 'tasks' => $tasks,
                 'project' => $activeTasks['project'] ?? [],
             ]);
         } catch (RequestException $e) {
+            // API çağrısında bir hata oluşursa, bunu kullanıcıya gösterin
             return view('error', ['message' => 'Görevler alınamadı: ' . $e->getMessage()]);
         }
     }
+    public function login()
+    {
+        try {
+            $client = new Client();
+            $response = $client->post($this->loginUrl, [
+                'json' => [
+                    'email' => $this->email,
+                    'password' => $this->password,
+                ],
+            ]);
+            
+            $body = json_decode($response->getBody(), true);
+    
+            if (!empty($body['access_token'])) {
+                session()->set('ticktick_access_token', $body['access_token']);
+                return redirect()->to('/ticktick/tasks');
+            } else {
+                return view('error', ['message' => 'Giriş başarısız oldu.']);
+            }
+        } catch (RequestException $e) {
+            return view('error', ['message' => 'Login işlemi sırasında hata oluştu: ' . $e->getMessage()]);
+        }
+    }
+    
+
 }
