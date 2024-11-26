@@ -10,7 +10,7 @@
     <h1>TickTick Listeleri</h1>
     <div class="list-group">
         <?php foreach ($lists as $list): ?>
-            <a href="/ticktick/showTasks/<?= $list['id'] ?>" class="list-group-item list-group-item-action">
+            <a href="/ticktick/getProjectTasks/<?= $list['id'] ?>/data" class="list-group-item list-group-item-action">
                 <?= $list['name'] ?>
             </a>
         <?php endforeach; ?>

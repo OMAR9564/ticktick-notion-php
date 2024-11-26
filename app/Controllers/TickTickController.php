@@ -101,7 +101,6 @@ class TickTickController extends BaseController
 
         return json_decode($response->getBody(), true);
     }
-
     // Bir projenin tüm verilerini çeker
     private function getProjectData($accessToken, $projectId)
 {
@@ -129,9 +128,7 @@ class TickTickController extends BaseController
         'activeTasks' => $activeTasks,
         'completedTasks' => $completedTasks,
     ];
-}
-
-
+    }
     // OAuth Access Token alır
     private function getAccessToken($code)
     {
@@ -151,5 +148,42 @@ class TickTickController extends BaseController
 
         $body = json_decode($response->getBody(), true);
         return $body['access_token'];
+    }
+    public function getProjectTasks($projectId)
+    {
+        $accessToken = session()->get('ticktick_access_token');
+        if (!$accessToken) {
+            return redirect()->to('/ticktick/authenticate');
+        }
+
+        try {
+            $client = new Client();
+
+            // Tamamlanmamış görevler (v1 API)
+            $activeResponse = $client->request('GET', "https://api.ticktick.com/api/v2/project/$projectId/tasks", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken,
+                ],
+            ]);
+            $activeTasks = json_decode($activeResponse->getBody(), true);
+
+            // Tamamlanmış görevler (v2 API)
+            $completedResponse = $client->request('GET', "https://api.ticktick.com/api/v2/project/all/completedInAll");
+            $completedTasks = json_decode($completedResponse->getBody(), true);
+
+            // Görevleri birleştir
+            $tasks = [
+                'activeTasks' => $activeTasks['tasks'] ?? [],
+                'completedTasks' => $completedTasks ?? [],
+            ];
+
+            // Verileri view dosyasına gönder
+            return view('ticktick_project_tasks', [
+                'tasks' => $tasks,
+                'project' => $activeTasks['project'] ?? [],
+            ]);
+        } catch (RequestException $e) {
+            return view('error', ['message' => 'Görevler alınamadı: ' . $e->getMessage()]);
+        }
     }
 }
