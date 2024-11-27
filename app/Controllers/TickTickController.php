@@ -129,20 +129,22 @@ class TickTickController extends BaseController
     }
     public function getProjectTasks($projectId)
     {
-        // Access Token'ı session'dan alın
         $accessToken = session()->get('ticktick_access_token');
 
-        // Eğer Access Token yoksa, kullanıcıyı giriş sayfasına yönlendirin
-        if ($accessToken) {
+        if (!$accessToken) {
             return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
         }
 
         try {
             $client = new Client();
-            
+
             // Tamamlanmamış görevler (tasks)
             $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/tasks", [
                 'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
+                    'Referer' => 'https://ticktick.com/',
+                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}',
                     'Authorization' => 'Bearer ' . $accessToken,
                 ],
             ]);
@@ -151,6 +153,10 @@ class TickTickController extends BaseController
             // Tamamlanmış görevler (completed)
             $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
                 'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
+                    'Referer' => 'https://ticktick.com/',
+                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}',
                     'Authorization' => 'Bearer ' . $accessToken,
                 ],
             ]);
@@ -162,16 +168,26 @@ class TickTickController extends BaseController
                 'completedTasks' => $completedTasks ?? [],
             ];
 
-            // Görevleri View'e gönder
             return view('ticktick_project_tasks', [
                 'tasks' => $tasks,
                 'project' => $activeTasks['project'] ?? [],
             ]);
         } catch (RequestException $e) {
-            // API çağrısında bir hata oluşursa, bunu kullanıcıya gösterin
+            // Hata mesajını kontrol edin
+            if ($e->hasResponse()) {
+                $statusCode = $e->getResponse()->getStatusCode();
+                $responseBody = $e->getResponse()->getBody()->getContents();
+
+                // 401 Unauthorized hatası durumunda login yönlendirme
+                if ($statusCode === 401 && strpos($responseBody, '"errorCode":"user_not_sign_on"') !== false) {
+                    return redirect()->to('/ticktick/login')->with('error', 'Oturumunuz sona ermiş. Lütfen tekrar giriş yapın.');
+                }
+            }
+
             return view('error', ['message' => 'Görevler alınamadı: ' . $e->getMessage()]);
         }
     }
+
     public function login()
     {
         try {
@@ -181,14 +197,14 @@ class TickTickController extends BaseController
                     'Content-Type' => 'application/json',
                     'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
                     'Origin' => 'https://ticktick.com',
-                    'Referer' => 'https://ticktick.com/'
+                    'Referer' => 'https://ticktick.com/',
+                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
                 ],
                 'json' => [
-                    'email' => $this->email,  // Changed from 'email' to 'username'
-                    'password' => $this->password,
-                    'remember' => true
+                    'username' => $this->email,  // Changed from 'email' to 'username'
+                    'password' => $this->password
                 ],
-                'verify' => false  // Disable SSL verification if needed
+                'verify' => true  // Disable SSL verification if needed
             ]);
             
             $body = json_decode($response->getBody(), true);
