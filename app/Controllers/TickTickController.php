@@ -162,16 +162,12 @@ class TickTickController extends BaseController
             ]);
             $completedTasks = json_decode($completedResponse->getBody(), true);
 
-            // Görevleri birleştir
-            $tasks = [
-                'activeTasks' => $activeTasks['tasks'] ?? [],
-                'completedTasks' => $completedTasks ?? [],
+
+            return [
+                'uncompleted' => $activeTasks['tasks'] ?? [],
+                'completed' => $completedTasks['tasks'] ?? [],
             ];
 
-            return view('ticktick_project_tasks', [
-                'tasks' => $tasks,
-                'project' => $activeTasks['project'] ?? [],
-            ]);
         } catch (RequestException $e) {
             // Hata mesajını kontrol edin
             if ($e->hasResponse()) {
@@ -222,6 +218,91 @@ class TickTickController extends BaseController
 
             return view('error', ['message' => 'Login işlemi sırasında hata oluştu: ' . $e->getMessage()]);
         }
+    }
+
+    private function loadMappings()
+    {
+        $jsonPath = WRITEPATH . '/data/mappings.json'; // JSON dosyasının yolu
+        if (!file_exists($jsonPath)) {
+            throw new \Exception('Mapping JSON dosyası bulunamadı.');
+        }
+
+        $jsonData = file_get_contents($jsonPath);
+        return json_decode($jsonData, true);
+    }
+
+    private function addToNotion($databaseId, $task)
+    {
+        $notionToken = getenv('NOTION_TOKEN');
+        $client = new Client();
+
+        $response = $client->post("https://api.notion.com/v1/pages", [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $notionToken,
+                'Content-Type' => 'application/json',
+                'Notion-Version' => '2022-06-28',
+            ],
+            'json' => [
+                'parent' => ['database_id' => $databaseId],
+                'properties' => [
+                    'Name' => ['title' => [['text' => ['content' => $task['title']]]]],
+                    'Status' => ['select' => ['name' => $task['status']]],
+                    'Due Date' => ['date' => ['start' => $task['dueDate'] ?? null]],
+                ],
+            ],
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function syncTasks()
+    {
+        $mappings = $this->loadMappings();
+        $accessToken = session()->get('ticktick_access_token');
+
+        if (!$accessToken) {
+            throw new \Exception('TickTick erişim tokeni bulunamadı.');
+        }
+
+        foreach ($mappings as $notionDatabaseId => $ticktickListId) {
+            $ticktickTasks = $this->getTickTickTasks($accessToken, $ticktickListId);
+            $localData = $this->loadLocalData($notionDatabaseId); // JSON'dan alınır
+
+            // Tamamlanmış görevleri kontrol et
+            foreach ($ticktickTasks['completed'] as $task) {
+                if (!isset($localData['completed'][$task['id']])) {
+                    $this->addToNotion($notionDatabaseId, $task); // Notion'a ekle
+                    $localData['completed'][$task['id']] = $task;
+                }
+            }
+
+            // Tamamlanmamış görevleri kontrol et
+            foreach ($ticktickTasks['uncompleted'] as $task) {
+                if (!isset($localData['uncompleted'][$task['id']])) {
+                    $this->addToNotion($notionDatabaseId, $task);
+                    $localData['uncompleted'][$task['id']] = $task;
+                }
+            }
+
+            // JSON'u güncelle
+            $this->saveLocalData($notionDatabaseId, $localData);
+        }
+    }
+    private function saveLocalData($databaseId, $data)
+    {
+        $filePath = WRITEPATH . "data/$databaseId.json";
+        file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
+    }
+    
+    private function loadLocalData($databaseId)
+    {
+        $filePath = WRITEPATH . "data/$databaseId.json";
+        if (!file_exists($filePath)) {
+            return ['completed' => [], 'uncompleted' => []];
+        }
+    
+        $data = file_get_contents($filePath);
+        return json_decode($data, true);
     }
     
 
