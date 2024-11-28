@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
+
 class TickTickController extends BaseController
 {
     private $ticktickClientId;
@@ -128,73 +129,74 @@ class TickTickController extends BaseController
         return $body['access_token'];
     }
     public function getProjectTasks($projectId)
-{
-    // Access token'ı debug et
-    $accessToken = session()->get('ticktick_access_token');
-    \Log::info('Access Token: ' . $accessToken); // Token'ı logla
-   
-    if (!$accessToken) {
-        \Log::error('No access token found');
-        return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
-    }
-   
-    try {
-        $client = new Client();
-       
-        // API çağrıları öncesi log ekle
-        \Log::info('Fetching active tasks for project: ' . $projectId);
-       
-        $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/tasks", [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken, // Eksik olan Authorization header'ı
-                'Content-Type' => 'application/json',
-                'Referer' => 'https://ticktick.com/',
-                'Accept' => 'application/json',
-                'Origin' => 'https://ticktick.com',
-                'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
-            ],
-        ]);
-       
-        $activeTasks = json_decode($activeResponse->getBody(), true);
-        \Log::info('Active Tasks: ', $activeTasks);
-       
-        // Benzer şekilde completed tasks için de log ekle
-        $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken, // Eksik olan Authorization header'ı
-                'Content-Type' => 'application/json',
-                'Referer' => 'https://ticktick.com/',
-                'Accept' => 'application/json',
-                'Origin' => 'https://ticktick.com',
-                'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
-            ],
-        ]);
-        
-        $completedTasks = json_decode($completedResponse->getBody(), true);
-        \Log::info('Completed Tasks: ', $completedTasks);
-        print_r($activeTasks);
-        exit;
-        return [
-            'uncompleted' => $activeTasks['tasks'] ?? [],
-            'completed' => $completedTasks['tasks'] ?? [],
-        ];
-    } catch (RequestException $e) {
-        // Daha detaylı hata bilgisi
-        \Log::error('API Request Error: ' . $e->getMessage());
-        \Log::error('Error Response: ' . $e->getResponse()->getBody());
-        
-        if ($e->hasResponse()) {
-            $statusCode = $e->getResponse()->getStatusCode();
-            $responseBody = $e->getResponse()->getBody()->getContents();
-            
-            if ($statusCode === 401 && strpos($responseBody, '"errorCode":"user_not_sign_on"') !== false) {
-                return redirect()->to('/ticktick/login')->with('error', 'Oturumunuz sona ermiş. Lütfen tekrar giriş yapın.');
-            }
+    {
+        // Access token'ı debug et
+        $accessToken = session()->get('ticktick_access_token');
+        log_message('info', 'Access Token: ' . $accessToken); // Token'ı logla
+
+        if (!$accessToken) {
+            log_message('error', 'No access token found');
+            return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
         }
-        
-        return view('error', ['message' => 'Görevler alınamadı: ' . $e->getMessage()]);
+
+        try {
+            $client = new Client();
+
+            // API çağrıları öncesi log ekle
+            log_message('info', 'Fetching active tasks for project: ' . $projectId);
+
+            $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/tasks", [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Referer' => 'https://ticktick.com/',
+                    'Accept' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
+                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
+                ],
+            ]);
+
+            $activeTasks = json_decode($activeResponse->getBody(), true);
+            log_message('info', 'Active Tasks: ' . json_encode($activeTasks));
+
+            print_r($activeTasks);
+            exit;
+
+            // Benzer şekilde completed tasks için de log ekle
+            $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Referer' => 'https://ticktick.com/',
+                    'Accept' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
+                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
+                ],
+            ]);
+
+            $completedTasks = json_decode($completedResponse->getBody(), true);
+            log_message('info', 'Completed Tasks: ' . json_encode($completedTasks));
+
+            return [
+                'uncompleted' => $activeTasks['tasks'] ?? [],
+                'completed' => $completedTasks['tasks'] ?? [],
+            ];
+        } catch (RequestException $e) {
+            // Daha detaylı hata bilgisi
+            log_message('error', 'API Request Error: ' . $e->getMessage());
+            log_message('error', 'Error Response: ' . $e->getResponse()->getBody());
+
+            if ($e->hasResponse()) {
+                $statusCode = $e->getResponse()->getStatusCode();
+                $responseBody = $e->getResponse()->getBody()->getContents();
+
+                if ($statusCode === 401 && strpos($responseBody, '"errorCode":"user_not_sign_on"') !== false) {
+                    return redirect()->to('/ticktick/login')->with('error', 'Oturumunuz sona ermiş. Lütfen tekrar giriş yapın.');
+                }
+            }
+
+            return view('error', ['message' => 'Görevler alınamadı: ' . $e->getMessage()]);
+        }
     }
-}
+
 
     public function login()
     {
@@ -209,29 +211,31 @@ class TickTickController extends BaseController
                     'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
                 ],
                 'json' => [
-                    'username' => $this->email,  // Changed from 'email' to 'username'
+                    'username' => $this->email,
                     'password' => $this->password
                 ],
-                'verify' => true  // Disable SSL verification if needed
+                'verify' => true
             ]);
             
             $body = json_decode($response->getBody(), true);
 
-
             if (!empty($body['token'])) {
                 session()->set('ticktick_v2_access_token', $body['token']);
-                return redirect()->to('/');
+                return redirect()->to('/')->with('success', 'Giriş başarılı!');
             } else {
-                return view('error', ['message' => 'Giriş başarısız oldu.']);
+                return redirect()->to('/')->with('error', 'Giriş başarısız oldu. Lütfen bilgilerinizi kontrol edin.');
             }
         } catch (RequestException $e) {
-            // Log the full error details for debugging
+            // Hata ayrıntılarını logla
             log_message('error', 'TickTick Login Error: ' . $e->getMessage());
-            log_message('error', 'Response Body: ' . $e->getResponse()->getBody());
+            if ($e->hasResponse()) {
+                log_message('error', 'Response Body: ' . $e->getResponse()->getBody());
+            }
 
-            return view('error', ['message' => 'Login işlemi sırasında hata oluştu: ' . $e->getMessage()]);
+            return redirect()->to('/')->with('error', 'Login işlemi sırasında hata oluştu: ' . $e->getMessage());
         }
     }
+
 
     private function loadMappings()
     {

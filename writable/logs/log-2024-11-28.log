@@ -50,3 +50,46 @@ in APPPATH\Controllers\TickTickController.php on line 134.
  5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
  6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
  7 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-11-28 13:49:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:49:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:49:56 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-11-28 13:49:56 --> Fetching active tasks for project: 67163cadebbd740000000047
+ERROR - 2024-11-28 13:49:58 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/67163cadebbd740000000047/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"asplaoxr@tw8","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-11-28 13:49:58 --> Error Response: {"errorId":"asplaoxr@tw8","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+INFO - 2024-11-28 13:50:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:53:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:53:04 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-11-28 13:53:04 --> Fetching active tasks for project: 67163cadebbd740000000047
+ERROR - 2024-11-28 13:53:06 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/67163cadebbd740000000047/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"ssjkvxfr@tw8","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-11-28 13:53:06 --> Error Response: {"errorId":"ssjkvxfr@tw8","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+INFO - 2024-11-28 13:53:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:53:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:53:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:53:20 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-11-28 13:53:20 --> Fetching active tasks for project: 67163cadebbd740000000047
+ERROR - 2024-11-28 13:53:22 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/67163cadebbd740000000047/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"xqjcr0zi@tw11","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-11-28 13:53:22 --> Error Response: {"errorId":"xqjcr0zi@tw11","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+INFO - 2024-11-28 13:57:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:57:30 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-11-28 13:57:30 --> Fetching active tasks for project: 67163cadebbd740000000047
+ERROR - 2024-11-28 13:57:31 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/67163cadebbd740000000047/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"fdi1tn0z@tw8","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-11-28 13:57:31 --> Error Response: {"errorId":"fdi1tn0z@tw8","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+INFO - 2024-11-28 13:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:58:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 13:58:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 14:00:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-28 14:00:47 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-11-28 14:00:47 --> Fetching active tasks for project: 67163cadebbd740000000047
+ERROR - 2024-11-28 14:00:49 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/67163cadebbd740000000047/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"bn5dxebk@tw10","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-11-28 14:00:49 --> Error Response: {"errorId":"bn5dxebk@tw10","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
