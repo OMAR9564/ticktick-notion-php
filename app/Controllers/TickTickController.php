@@ -150,14 +150,13 @@ class TickTickController extends BaseController
                     'Content-Type' => 'application/json',
                     'Referer' => 'https://ticktick.com/',
                     'Accept' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
                     'Cookie' => session()->get("ticktick_v2_access_cookie"),
-                    'Origin' => 'https://ticktick.com'
                 ],
             ]);
 
             
             $activeTasks = json_decode($activeResponse->getBody(), true);
-            log_message('info', 'Active Tasks: ' . json_encode($activeTasks));
             
             // Benzer şekilde completed tasks için de log ekle
             $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
@@ -166,13 +165,13 @@ class TickTickController extends BaseController
                     'Referer' => 'https://ticktick.com/',
                     'Accept' => 'application/json',
                     'Origin' => 'https://ticktick.com',
-                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
+                    'Cookie' => session()->get("ticktick_v2_access_cookie"),
                 ],
             ]);
 
             $completedTasks = json_decode($completedResponse->getBody(), true);
-            log_message('info', 'Completed Tasks: ' . json_encode($completedTasks));
-
+            print_r($completedTasks);
+            exit;
             return [
                 'uncompleted' => $activeTasks['tasks'] ?? [],
                 'completed' => $completedTasks['tasks'] ?? [],
