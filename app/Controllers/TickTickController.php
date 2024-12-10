@@ -5,7 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-
+use GuzzleHttp\Cookie\CookieJar;
 
 class TickTickController extends BaseController
 {
@@ -150,17 +150,15 @@ class TickTickController extends BaseController
                     'Content-Type' => 'application/json',
                     'Referer' => 'https://ticktick.com/',
                     'Accept' => 'application/json',
-                    'Origin' => 'https://ticktick.com',
-                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
+                    'Cookie' => session()->get("ticktick_v2_access_cookie"),
+                    'Origin' => 'https://ticktick.com'
                 ],
             ]);
 
+            
             $activeTasks = json_decode($activeResponse->getBody(), true);
             log_message('info', 'Active Tasks: ' . json_encode($activeTasks));
-
-            print_r($activeTasks);
-            exit;
-
+            
             // Benzer şekilde completed tasks için de log ekle
             $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
                 'headers' => [
@@ -201,6 +199,8 @@ class TickTickController extends BaseController
     public function login()
     {
         try {
+            $cookieJar = new CookieJar();
+
             $client = new Client();
             $response = $client->post($this->loginUrl, [
                 'headers' => [
@@ -214,10 +214,20 @@ class TickTickController extends BaseController
                     'username' => $this->email,
                     'password' => $this->password
                 ],
-                'verify' => true
+                'verify' => true,
+                'cookies' => $cookieJar
             ]);
             
             $body = json_decode($response->getBody(), true);
+            $cookies = $response->getHeader("Set-Cookie");
+            // Cookie değerlerini birleştir
+            $cookieString = '';
+            if (!empty($cookies)) {
+                foreach ($cookies as $cookie) {
+                    $cookieString .= $cookie . '; ';
+                }
+            }
+            session()->set('ticktick_v2_access_cookie', $cookieString);
 
             if (!empty($body['token'])) {
                 session()->set('ticktick_v2_access_token', $body['token']);
