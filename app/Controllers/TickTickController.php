@@ -383,8 +383,8 @@ class TickTickController extends BaseController
                 foreach ($lists as $list) {
                     $notionCategoryId = $list["id"];
                     $notionCategoryText = $list["name"];
-                    // $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "");
-    
+                    $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "");
+                    
                     // Eğer Category_Id mevcutsa atla
                     if (isset($existingOptionsMap[$notionCategoryId])) {
                         continue;
@@ -393,7 +393,7 @@ class TickTickController extends BaseController
                     // Yeni seçenek oluştur ve ekle
                     $newOptions[] = [
                         "name" => $notionCategoryText,
-                        "color" => "default"
+                        "color" => $notionCategoryColor
                     ];
                 }
     
@@ -422,7 +422,7 @@ class TickTickController extends BaseController
     
                 $patchHttpCode = $patchResponse->getStatusCode();
                 if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
-                    $result["success"][] = $this->getClosestColorName($lists[0]["color"]);
+                    $result["success"][] = $lists;
                 } else {
                     throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
                 }
