@@ -6,15 +6,30 @@ use CodeIgniter\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Cookie\CookieJar;
+use Exception;
 
 class TickTickController extends BaseController
 {
     private $ticktickClientId;
     private $ticktickClientSecret;
     private $redirectUri;
+    private $notionToken;
     private $loginUrl;
     private $email;
     private $password;
+
+    private $namedColors = [
+        'blue'    => '#0000FF',
+        'brown'   => '#A52A2A',
+        'default' => '#FFFFFF', // Burada default'u beyaz kabul ettim, isterseniz değiştirin
+        'gray'    => '#808080',
+        'green'   => '#008000',
+        'orange'  => '#FFA500',
+        'pink'    => '#FFC0CB',
+        'purple'  => '#800080',
+        'red'     => '#FF0000',
+        'yellow'  => '#FFFF00',
+    ];
 
     public function __construct()
     {
@@ -22,6 +37,7 @@ class TickTickController extends BaseController
         $this->ticktickClientId = getenv('TICKTICK_CLIENT_ID');
         $this->ticktickClientSecret = getenv('TICKTICK_CLIENT_SECRET');
         $this->redirectUri = getenv('TICKTICK_REDIRECT_URI');
+        $this->notionToken = getenv('NOTION_API_TOKEN');
         $this->email = getenv('TICKTICK_EMAIL');
         $this->password = getenv('TICKTICK_PASSWORD');
     }
@@ -37,6 +53,9 @@ class TickTickController extends BaseController
 
         try {
             $lists = $this->getTickTickLists($accessToken);
+            
+            print_r($this->setTickTickListsToNotion($lists));
+            exit;
 
             return view('ticktick_lists', ['lists' => $lists]);
         } catch (RequestException $e) {
@@ -108,6 +127,7 @@ class TickTickController extends BaseController
 
         return json_decode($response->getBody(), true);
     }
+
     // OAuth Access Token alır
     private function getAccessToken($code)
     {
@@ -128,6 +148,7 @@ class TickTickController extends BaseController
         $body = json_decode($response->getBody(), true);
         return $body['access_token'];
     }
+
     public function getProjectTasks($projectId)
     {
         // Access token'ı debug et
@@ -194,7 +215,6 @@ class TickTickController extends BaseController
         }
     }
 
-
     public function login()
     {
         try {
@@ -213,7 +233,7 @@ class TickTickController extends BaseController
                     'username' => $this->email,
                     'password' => $this->password
                 ],
-                'verify' => true,
+                'verify' => false,
                 'cookies' => $cookieJar
             ]);
             
@@ -244,7 +264,6 @@ class TickTickController extends BaseController
             return redirect()->to('/')->with('error', 'Login işlemi sırasında hata oluştu: ' . $e->getMessage());
         }
     }
-
 
     private function loadMappings()
     {
@@ -330,6 +349,138 @@ class TickTickController extends BaseController
         $data = file_get_contents($filePath);
         return json_decode($data, true);
     }
-    
 
+    private function setTickTickListsToNotion($lists){
+        $result = ["success" => [], "errors" => []];
+    
+        if ($lists) {
+            $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2";
+    
+            try {
+                // Mevcut seçenekleri almak için GET isteği
+                $client = new Client();
+                $response = $client->request('GET', $url, [
+                    'headers' => [
+                        'Authorization' => "Bearer $this->notionToken",
+                        'Content-Type' => 'application/json',
+                        'Notion-Version' => '2022-06-28'
+                    ]
+                ]);
+    
+                $httpCode = $response->getStatusCode();
+                if ($httpCode >= 200 && $httpCode < 300) {
+                    $responseData = json_decode($response->getBody(), true);
+                    $existingOptions = $responseData['properties']['Category']['select']['options'] ?? [];
+                } else {
+                    throw new Exception("HTTP Hatası: $httpCode, Mevcut seçenekler alınamadı.");
+                }
+    
+                // Mevcut seçenekleri sakla
+                $existingOptionsMap = array_column($existingOptions, null, 'name');
+    
+                $newOptions = [];
+    
+                foreach ($lists as $list) {
+                    $notionCategoryId = $list["id"];
+                    $notionCategoryText = $list["name"];
+                    // $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "");
+    
+                    // Eğer Category_Id mevcutsa atla
+                    if (isset($existingOptionsMap[$notionCategoryId])) {
+                        continue;
+                    }
+    
+                    // Yeni seçenek oluştur ve ekle
+                    $newOptions[] = [
+                        "name" => $notionCategoryText,
+                        "color" => "default"
+                    ];
+                }
+    
+                // Mevcut ve yeni seçenekleri birleştir
+                $allOptions = array_merge($existingOptions, $newOptions);
+    
+                // Güncellenmiş seçeneklerle PATCH isteği gönder
+                $data = [
+                    "properties" => [
+                        "Category" => [
+                            "select" => [
+                                "options" => $allOptions,
+                            ]
+                        ]
+                    ]
+                ];
+    
+                $patchResponse = $client->request('PATCH', $url, [
+                    'headers' => [
+                        'Authorization' => "Bearer $this->notionToken",
+                        'Content-Type' => 'application/json',
+                        'Notion-Version' => '2022-06-28'
+                    ],
+                    'json' => $data
+                ]);
+    
+                $patchHttpCode = $patchResponse->getStatusCode();
+                if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
+                    $result["success"][] = $this->getClosestColorName($lists[0]["color"]);
+                } else {
+                    throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
+                }
+            } catch (Exception $e) {
+                $result["errors"][] = ["error" => $e->getMessage()];
+            }
+        } else {
+            $result["errors"][] = ["message" => "Listeler boş veya geçersiz."];
+        }
+    
+        return $result;
+    }
+
+    /**
+     * Hex kodunu R,G,B olarak döndürür.
+     */
+    private function hexToRgb($hex) {
+        $hex = str_replace('#', '', $hex);
+        if (strlen($hex) === 3) {
+            // Kısa hex formatını uzat (#fff -> #ffffff)
+            $hex = str_repeat($hex[0], 2).str_repeat($hex[1], 2).str_repeat($hex[2], 2);
+        }
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+    
+        return [$r, $g, $b];
+    }
+    
+    /**
+     * İki renk (R,G,B) formatında arası Öklid mesafesi hesaplanır.
+     */
+    private function colorDistance($rgb1, $rgb2) {
+        return sqrt(pow($rgb1[0] - $rgb2[0], 2) + pow($rgb1[1] - $rgb2[1], 2) + pow($rgb1[2] - $rgb2[2], 2));
+    }
+    
+    /**
+     * Verilen input hex rengine en yakın isimlendirilmiş rengi bulur.
+     */
+    private function getClosestColorName($inputHex) {
+        if($inputHex){
+            $inputRgb = $this->hexToRgb($inputHex);
+            $closestName = null;
+            $minDistance = PHP_FLOAT_MAX;
+            $namedColors = $this->namedColors;
+
+            foreach ($namedColors as $name => $hex) {
+                $colorRgb = $this->hexToRgb($hex);
+                $dist = $this->colorDistance($inputRgb, $colorRgb);
+                if ($dist < $minDistance) {
+                    $minDistance = $dist;
+                    $closestName = $name;
+                }
+            }
+
+            return $closestName;
+        }else{
+            return "default";
+        }
+    }
 }
