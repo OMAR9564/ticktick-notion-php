@@ -350,14 +350,13 @@ class TickTickController extends BaseController
         return json_decode($data, true);
     }
 
-    private function setTickTickListsToNotion($lists){
+    private function setTickTickListsToNotion($lists) {
         $result = ["success" => [], "errors" => []];
     
         if ($lists) {
             $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2";
     
             try {
-                // Mevcut seçenekleri almak için GET isteği
                 $client = new Client();
                 $response = $client->request('GET', $url, [
                     'headers' => [
@@ -375,31 +374,42 @@ class TickTickController extends BaseController
                     throw new Exception("HTTP Hatası: $httpCode, Mevcut seçenekler alınamadı.");
                 }
     
-                // Mevcut seçenekleri sakla
-                $existingOptionsMap = array_column($existingOptions, null, 'name');
-    
+                // Mevcut seçenekleri sakla (referanslar için dizinleme)
+                $existingOptionsMap = array_column($existingOptions, null, 'description');
                 $newOptions = [];
-    
+                return $existingOptions;
                 foreach ($lists as $list) {
                     $notionCategoryId = $list["id"];
                     $notionCategoryText = $list["name"];
                     $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "");
-                    
-                    // Eğer Category_Id mevcutsa atla
-                    if (isset($existingOptionsMap[$notionCategoryId])) {
-                        continue;
-                    }
     
-                    // Yeni seçenek oluştur ve ekle
-                    $newOptions[] = [
-                        "name" => $notionCategoryText,
-                        "color" => $notionCategoryColor
-                    ];
+                    if (isset($existingOptionsMap[$notionCategoryId])) {
+                        $existingOption = &$existingOptionsMap[$notionCategoryId]; // Referans ile al
+    
+                        // Eğer isim ve renk aynıysa devam et
+                        // if ($existingOption['name'] === $notionCategoryText && $existingOption['color'] === $notionCategoryColor) {
+                        //     continue;
+                        // }
+                        if ($existingOption['name'] === $notionCategoryText) {
+                            continue;
+                        }
+    
+                        $existingOption['name'] = $notionCategoryText;
+                        // $existingOption['color'] = $notionCategoryColor;
+                        $existingOption['description'] = $notionCategoryId;
+                    } else {
+                        // Yeni seçenek oluştur ve ekle
+                        $newOptions[] = [
+                            "description" => $notionCategoryId,
+                            "name" => $notionCategoryText,
+                            "color" => $notionCategoryColor
+                        ];
+                    }
                 }
     
                 // Mevcut ve yeni seçenekleri birleştir
-                $allOptions = array_merge($existingOptions, $newOptions);
-    
+                $allOptions = array_merge(array_values($existingOptionsMap), $newOptions);
+                
                 // Güncellenmiş seçeneklerle PATCH isteği gönder
                 $data = [
                     "properties" => [
@@ -422,7 +432,7 @@ class TickTickController extends BaseController
     
                 $patchHttpCode = $patchResponse->getStatusCode();
                 if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
-                    $result["success"][] = $lists;
+                    $result["success"][] = $data;
                 } else {
                     throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
                 }
@@ -435,6 +445,8 @@ class TickTickController extends BaseController
     
         return $result;
     }
+    
+    
 
     /**
      * Hex kodunu R,G,B olarak döndürür.
