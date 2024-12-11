@@ -6,6 +6,8 @@ use CodeIgniter\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Pool;
+use GuzzleHttp\Psr7\Request;
 use Exception;
 
 class TickTickController extends BaseController
@@ -124,6 +126,8 @@ class TickTickController extends BaseController
                 'Authorization' => 'Bearer ' . $accessToken,
             ],
         ]);
+        unset($client);
+        log_message('warning', "Basarili bir sekilde Listeler alindi");
 
         return json_decode($response->getBody(), true);
     }
@@ -144,12 +148,12 @@ class TickTickController extends BaseController
                 'redirect_uri' => $this->redirectUri,
             ],
         ]);
-
+        unset($client);
         $body = json_decode($response->getBody(), true);
         return $body['access_token'];
     }
 
-    public function getProjectTasks($projectId)
+    public function getListTasks($listId)
     {
         // Access token'ı debug et
         $accessToken = session()->get('ticktick_access_token');
@@ -164,9 +168,9 @@ class TickTickController extends BaseController
             $client = new Client();
 
             // API çağrıları öncesi log ekle
-            log_message('info', 'Fetching active tasks for project: ' . $projectId);
+            log_message('info', 'Fetching active tasks for project: ' . $listId);
 
-            $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/tasks", [
+            $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$listId/tasks", [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Referer' => 'https://ticktick.com/',
@@ -180,7 +184,7 @@ class TickTickController extends BaseController
             $activeTasks = json_decode($activeResponse->getBody(), true);
             
             // Benzer şekilde completed tasks için de log ekle
-            $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$projectId/completed", [
+            $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$listId/completed", [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Referer' => 'https://ticktick.com/',
@@ -189,14 +193,17 @@ class TickTickController extends BaseController
                     'Cookie' => session()->get("ticktick_v2_access_cookie"),
                 ],
             ]);
-
+            unset($client);
             $completedTasks = json_decode($completedResponse->getBody(), true);
-            print_r($completedTasks);
-            exit;
-            return [
-                'uncompleted' => $activeTasks['tasks'] ?? [],
-                'completed' => $completedTasks['tasks'] ?? [],
+
+            $allTasks = [
+                'uncompleted' => $activeTasks ?? [],
+                'completed' => $completedTasks ?? [],
             ];
+            log_message('warning', "Basarili bir sekilde Listelerin tasklari alindi");
+
+            return $allTasks;
+
         } catch (RequestException $e) {
             // Daha detaylı hata bilgisi
             log_message('error', 'API Request Error: ' . $e->getMessage());
@@ -236,7 +243,7 @@ class TickTickController extends BaseController
                 'verify' => false,
                 'cookies' => $cookieJar
             ]);
-            
+            unset($client);
             $body = json_decode($response->getBody(), true);
             $cookies = $response->getHeader("Set-Cookie");
             // Cookie değerlerini birleştir
@@ -250,6 +257,8 @@ class TickTickController extends BaseController
 
             if (!empty($body['token'])) {
                 session()->set('ticktick_v2_access_token', $body['token']);
+                log_message('warning', "Basarili bir sekilde giris yapildi");
+
                 return redirect()->to('/')->with('success', 'Giriş başarılı!');
             } else {
                 return redirect()->to('/')->with('error', 'Giriş başarısız oldu. Lütfen bilgilerinizi kontrol edin.');
@@ -276,29 +285,7 @@ class TickTickController extends BaseController
         return json_decode($jsonData, true);
     }
 
-    private function addToNotion($databaseId, $task)
-    {
-        $notionToken = getenv('NOTION_TOKEN');
-        $client = new Client();
-
-        $response = $client->post("https://api.notion.com/v1/pages", [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $notionToken,
-                'Content-Type' => 'application/json',
-                'Notion-Version' => '2022-06-28',
-            ],
-            'json' => [
-                'parent' => ['database_id' => $databaseId],
-                'properties' => [
-                    'Name' => ['title' => [['text' => ['content' => $task['title']]]]],
-                    'Status' => ['select' => ['name' => $task['status']]],
-                    'Due Date' => ['date' => ['start' => $task['dueDate'] ?? null]],
-                ],
-            ],
-        ]);
-
-        return json_decode($response->getBody(), true);
-    }
+    
 
     public function syncTasks()
     {
@@ -365,7 +352,8 @@ class TickTickController extends BaseController
                         'Notion-Version' => '2022-06-28'
                     ]
                 ]);
-    
+                log_message('warning', "Basarili bir sekilde Notiondan Listeler alindi");
+
                 $httpCode = $response->getStatusCode();
                 if ($httpCode >= 200 && $httpCode < 300) {
                     $responseData = json_decode($response->getBody(), true);
@@ -377,7 +365,7 @@ class TickTickController extends BaseController
                 // Mevcut seçenekleri sakla (referanslar için dizinleme)
                 $existingOptionsMap = array_column($existingOptions, null, 'description');
                 $newOptions = [];
-                return $existingOptions;
+    
                 foreach ($lists as $list) {
                     $notionCategoryId = $list["id"];
                     $notionCategoryText = $list["name"];
@@ -386,16 +374,11 @@ class TickTickController extends BaseController
                     if (isset($existingOptionsMap[$notionCategoryId])) {
                         $existingOption = &$existingOptionsMap[$notionCategoryId]; // Referans ile al
     
-                        // Eğer isim ve renk aynıysa devam et
-                        // if ($existingOption['name'] === $notionCategoryText && $existingOption['color'] === $notionCategoryColor) {
-                        //     continue;
-                        // }
                         if ($existingOption['name'] === $notionCategoryText) {
                             continue;
                         }
     
                         $existingOption['name'] = $notionCategoryText;
-                        // $existingOption['color'] = $notionCategoryColor;
                         $existingOption['description'] = $notionCategoryId;
                     } else {
                         // Yeni seçenek oluştur ve ekle
@@ -405,37 +388,44 @@ class TickTickController extends BaseController
                             "color" => $notionCategoryColor
                         ];
                     }
-                }
     
-                // Mevcut ve yeni seçenekleri birleştir
-                $allOptions = array_merge(array_values($existingOptionsMap), $newOptions);
-                
-                // Güncellenmiş seçeneklerle PATCH isteği gönder
-                $data = [
-                    "properties" => [
-                        "Category" => [
-                            "select" => [
-                                "options" => $allOptions,
+                    // Mevcut ve yeni seçenekleri birleştir
+                    $allOptions = array_merge(array_values($existingOptionsMap), $newOptions);
+
+                    // Güncellenmiş seçeneklerle PATCH isteği gönder
+                    $data = [
+                        "properties" => [
+                            "Category" => [
+                                "select" => [
+                                    "options" => $allOptions,
+                                ]
                             ]
                         ]
-                    ]
-                ];
-    
-                $patchResponse = $client->request('PATCH', $url, [
-                    'headers' => [
-                        'Authorization' => "Bearer $this->notionToken",
-                        'Content-Type' => 'application/json',
-                        'Notion-Version' => '2022-06-28'
-                    ],
-                    'json' => $data
-                ]);
-    
-                $patchHttpCode = $patchResponse->getStatusCode();
-                if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
-                    $result["success"][] = $data;
-                } else {
-                    throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
+                    ];
+
+                    $patchResponse = $client->request('PATCH', $url, [
+                        'headers' => [
+                            'Authorization' => "Bearer $this->notionToken",
+                            'Content-Type' => 'application/json',
+                            'Notion-Version' => '2022-06-28'
+                        ],
+                        'json' => $data
+                    ]);
+                    log_message('warning', "Basarili bir sekilde Notiona Listeler gonderildi");
+
+                    unset($client);
+
+                    // Görevleri al ve Notion'a ekle
+                    $resultAddTasksToNotion = $this->addTasksOfListToNotion($list);
+                    print_r($resultAddTasksToNotion);
+                    exit;
                 }
+                // $patchHttpCode = $patchResponse->getStatusCode();
+                // if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
+                //     $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi."];
+                // } else {
+                //     throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
+                // }
             } catch (Exception $e) {
                 $result["errors"][] = ["error" => $e->getMessage()];
             }
@@ -446,6 +436,71 @@ class TickTickController extends BaseController
         return $result;
     }
     
+    private function addTasksOfListToNotion($list) {
+        $result = ["success" => [], "errors" => []];
+        $allTasksOfList = $this->getListTasks($list["id"]);
+        $tasksToProcess = array_merge($allTasksOfList['uncompleted'], $allTasksOfList['completed']);
+        $client = new Client();
+        
+        $requests = function ($tasksToProcess) use ($list) {
+            foreach ($tasksToProcess as $task) {
+                $taskData = [
+                    "parent" => ["type" => "database_id", "database_id" => "1580ebdd798c809b8db4d4da56a193f2"],
+                    "properties" => [
+                        "Title" => ["title" => [[ // title yerine rich_text kullan
+                            "type" => "text", 
+                            "text" => ["content" => $task['title']]
+                        ]]],
+                        "Content" => ["rich_text" => [[ // Content zaten rich_text
+                            "type" => "text", 
+                            "text" => ["content" => $task['content'] ?? '']
+                        ]]],
+                        "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]], // Notion'un istediği tarih formatı
+                        "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]], // Aynı format
+                        "Priority" => ["number" => $task['priority'] ?? 0],
+                        "Category" => ["select" => ["description" => $list["id"]]], 
+                        "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complete"]] 
+                    ]
+                ];
+                // Tamamlanmış görevler için Completed Time ekle
+                // if (!empty($task['completedTime'])) {
+                //     $taskData["properties"]["Completed Time"] = ["date" => ["start" => $task['completedTime']]];
+                // }
+    
+                yield new Request(
+                    'POST',
+                    'https://api.notion.com/v1/pages',
+                    [
+                        'Authorization' => "Bearer $this->notionToken",
+                        'Content-Type' => 'application/json',
+                        'Notion-Version' => '2022-06-28'
+                    ],
+                    json_encode($taskData)
+                );
+            }
+        };
+    
+        $pool = new Pool($client, $requests($tasksToProcess), [
+            'concurrency' => 5,
+            'fulfilled' => function ($response, $index) use (&$result, $tasksToProcess) {
+                if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
+                    $result["success"][] = [
+                        "task" => $tasksToProcess[$index]['title'],
+                        "message" => "Görev başarıyla eklendi."
+                    ];
+                }
+            },
+            'rejected' => function ($reason, $index) use (&$result, $tasksToProcess) {
+                $result["errors"][] = [
+                    "task" => $tasksToProcess[$index]['title'],
+                    "error" => $reason instanceof RequestException ? $reason->getMessage() : $reason
+                ];
+            }
+        ]);
+    
+        $pool->promise()->wait();
+        return $result;
+    }
     
 
     /**
