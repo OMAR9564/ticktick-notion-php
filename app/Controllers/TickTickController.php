@@ -418,9 +418,7 @@ class TickTickController extends BaseController
                 ]);
 
                 $resultAddTasksToNotion = $this->addTasksOfListsToNotion($lists);
-                print_r($resultAddTasksToNotion);
-                exit;
-
+                
                 log_message('warning', "Başarılı bir şekilde Notion'a listeler gönderildi.");
 
                 $patchHttpCode = $patchResponse->getStatusCode();
@@ -445,8 +443,11 @@ class TickTickController extends BaseController
         $result = ["success" => [], "errors" => []];
         $client = new Client();
         $groupSize = 10; // Her 10 görevde bir gönder
+        $maxExecutionTime = 20; // Maksimum çalışma süresi (saniye)
+        $waitTime = 5; // Bekleme süresi (saniye)
 
         log_message('info', 'addTasksOfListsToNotion işlemine başlandı.');
+        $startTime = microtime(true); // İşlem başlangıç zamanı
 
         // Mevcut Notion görevlerini al
         $existingTasks = $this->getExistingTasksFromNotion();
@@ -551,54 +552,57 @@ class TickTickController extends BaseController
 
                 $pool->promise()->wait();
                 log_message('info', "Görev grubu tamamlandı. Grup: {$groupIndex}");
+
+                // Çalışma süresi kontrolü
+                if ((microtime(true) - $startTime) >= $maxExecutionTime) {
+                    log_message('info', "Maksimum çalışma süresine ulaşıldı. {$waitTime} saniye bekleniyor...");
+                    sleep($waitTime); // Bekleme süresi
+                    $startTime = microtime(true); // Zamanlayıcıyı sıfırla
+                }
             }
         }
 
         log_message('info', 'addTasksOfListsToNotion işlemi tamamlandı.');
         return $result;
     }
-
-    /**
-     * Mevcut Notion görevlerini alır.
-     */
     private function getExistingTasksFromNotion()
-{
-    $client = new Client();
-    $existingTasks = [];
-    $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2/query";
+    {
+        $client = new Client();
+        $existingTasks = [];
+        $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2/query";
 
-    try {
-        $response = $client->post($url, [
-            'headers' => [
-                'Authorization' => "Bearer $this->notionToken",
-                'Content-Type' => 'application/json',
-                'Notion-Version' => '2022-06-28'
-            ]
-        ]);
+        try {
+            $response = $client->post($url, [
+                'headers' => [
+                    'Authorization' => "Bearer $this->notionToken",
+                    'Content-Type' => 'application/json',
+                    'Notion-Version' => '2022-06-28'
+                ]
+            ]);
 
-        $data = json_decode($response->getBody(), true);
+            $data = json_decode($response->getBody(), true);
 
-        // Hata kontrolü: Yanıt yapısının doğruluğunu kontrol et
-        if (!isset($data['results']) || !is_array($data['results'])) {
-            throw new Exception("Unexpected response structure from Notion API.");
-        }
-
-        foreach ($data['results'] as $item) {
-            $ticktickId = $item['properties']['Ticktick Id']['rich_text'][0]['text']['content'] ?? null;
-            if ($ticktickId) {
-                $existingTasks[$ticktickId] = true;
+            // Hata kontrolü: Yanıt yapısının doğruluğunu kontrol et
+            if (!isset($data['results']) || !is_array($data['results'])) {
+                throw new Exception("Unexpected response structure from Notion API.");
             }
-        }
-    } catch (RequestException $e) {
-        // API isteğinde bir hata olduysa logla veya hata mesajı gönder
-        error_log("Notion API Request failed: " . $e->getMessage());
-    } catch (Exception $e) {
-        // Diğer hataları yakala ve logla
-        error_log("Error fetching tasks from Notion: " . $e->getMessage());
-    }
 
-    return $existingTasks;
-}
+            foreach ($data['results'] as $item) {
+                $ticktickId = $item['properties']['Ticktick Id']['rich_text'][0]['text']['content'] ?? null;
+                if ($ticktickId) {
+                    $existingTasks[$ticktickId] = true;
+                }
+            }
+        } catch (RequestException $e) {
+            // API isteğinde bir hata olduysa logla veya hata mesajı gönder
+            error_log("Notion API Request failed: " . $e->getMessage());
+        } catch (Exception $e) {
+            // Diğer hataları yakala ve logla
+            error_log("Error fetching tasks from Notion: " . $e->getMessage());
+        }
+
+        return $existingTasks;
+    }
 
 
     
