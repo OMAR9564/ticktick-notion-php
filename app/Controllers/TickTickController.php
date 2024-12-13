@@ -451,6 +451,7 @@ class TickTickController extends BaseController
 
         // Mevcut Notion görevlerini al
         $existingTasks = $this->getExistingTasksFromNotion();
+        return $existingTasks;
 
         foreach ($lists as $list) {
             log_message('info', "Liste işleniyor: {$list['name']}");
@@ -581,7 +582,7 @@ class TickTickController extends BaseController
             ]);
 
             $data = json_decode($response->getBody(), true);
-
+            return $data;
             // Hata kontrolü: Yanıt yapısının doğruluğunu kontrol et
             if (!isset($data['results']) || !is_array($data['results'])) {
                 throw new Exception("Unexpected response structure from Notion API.");

@@ -880,3 +880,132 @@ CRITICAL - 2024-12-13 13:59:22 --> ErrorException: Maximum execution time of 30 
 [Method: GET, Route: /]
 in VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 693.
  1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2024-12-13 14:06:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 14:06:58 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 14:06:59 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 14:06:59 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 624.
+ 1 APPPATH\Controllers\TickTickController.php(624): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(641): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 14:07:00 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-13 14:07:03 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-13 14:07:03 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 14:07:03 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-13 14:07:05 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 14:07:05 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-13 14:07:05 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 14:07:05 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 14:07:06 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 14:07:06 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 10
+INFO - 2024-12-13 14:07:07 --> Başarıyla eklendi: test
+INFO - 2024-12-13 14:07:07 --> Başarıyla eklendi: test
+INFO - 2024-12-13 14:07:08 --> Başarıyla eklendi: Pure php
+INFO - 2024-12-13 14:07:08 --> Başarıyla eklendi: Pure php
+INFO - 2024-12-13 14:07:08 --> Başarıyla eklendi: today close spotify sub
+INFO - 2024-12-13 14:07:08 --> Başarıyla eklendi: Etom ne
+INFO - 2024-12-13 14:07:09 --> Başarıyla eklendi: Learn Php
+INFO - 2024-12-13 14:07:09 --> Başarıyla eklendi: today close spotify sub
+INFO - 2024-12-13 14:07:09 --> Başarıyla eklendi: Etom ne
+INFO - 2024-12-13 14:07:10 --> Başarıyla eklendi: Etik dersi final odevi 1
+INFO - 2024-12-13 14:07:10 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-13 14:07:10 --> Görev grubu işleniyor. Grup: 1, Görev sayısı: 10
+INFO - 2024-12-13 14:07:10 --> Başarıyla eklendi: Algoritma analizi sinavi
+INFO - 2024-12-13 14:07:10 --> Başarıyla eklendi: Etik dersi final odevi 2
+INFO - 2024-12-13 14:07:10 --> Başarıyla eklendi: Algoritma analizi sinavi
+INFO - 2024-12-13 14:07:10 --> Başarıyla eklendi: Siber guvenlik sinavi
+INFO - 2024-12-13 14:07:11 --> Başarıyla eklendi: BLOCKCHAIN
+INFO - 2024-12-13 14:07:11 --> Başarıyla eklendi: Yapay zeka sinavi
+INFO - 2024-12-13 14:07:11 --> Başarıyla eklendi: Isletim sistemleri
+INFO - 2024-12-13 14:07:11 --> Başarıyla eklendi: Isletim sistemleri
+INFO - 2024-12-13 14:07:11 --> Başarıyla eklendi: Siber guvenlik sinavi
+INFO - 2024-12-13 14:07:11 --> Başarıyla eklendi: Yapay zeka sinavi
+INFO - 2024-12-13 14:07:11 --> Görev grubu tamamlandı. Grup: 1
+INFO - 2024-12-13 14:07:11 --> Görev grubu işleniyor. Grup: 2, Görev sayısı: 10
+INFO - 2024-12-13 14:07:12 --> Başarıyla eklendi: Blockchain raporu
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Ödevi yap algoritma
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Hilal Doktor icin wp status icin ozel bir tasarim yap
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Isletim sistemleri
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Algoritma hocaya sistem programlama gönder
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Algoritma anlizi dersinin tekrarı yap ve özetini çıkae
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Ai ödevi
+INFO - 2024-12-13 14:07:13 --> Başarıyla eklendi: Hamza harita proje
+INFO - 2024-12-13 14:07:14 --> Başarıyla eklendi: Algoritma analizi tekrar
+INFO - 2024-12-13 14:07:16 --> Başarıyla eklendi: خطط كلمة الله
+INFO - 2024-12-13 14:07:16 --> Görev grubu tamamlandı. Grup: 2
+INFO - 2024-12-13 14:07:16 --> Görev grubu işleniyor. Grup: 3, Görev sayısı: 10
+INFO - 2024-12-13 14:07:17 --> Başarıyla eklendi: AI dersinin ozetini cikar
+INFO - 2024-12-13 14:07:17 --> Başarıyla eklendi: Siber Gunvelik dersinin tekrari
+INFO - 2024-12-13 14:07:17 --> Başarıyla eklendi: Bütün özetler sınava hazır olduğunu kontrol et
+INFO - 2024-12-13 14:07:17 --> Başarıyla eklendi: Etik dersinin özetini çıkar
+INFO - 2024-12-13 14:07:18 --> Başarıyla eklendi: Scrum dersi ozetini cikar
+INFO - 2024-12-13 14:07:18 --> Başarıyla eklendi: Sianvlar icin prgorami ayarla
+INFO - 2024-12-13 14:07:18 --> Başarıyla eklendi: Isletim Sistemleri Notalari hazirla
+INFO - 2024-12-13 14:07:18 --> Başarıyla eklendi: Blockchaing dersinin ozetlerini kontrol et ve son iki haftayi duzenle
+INFO - 2024-12-13 14:07:18 --> Başarıyla eklendi: AI Dersinin odevnini yap ve gonder
+INFO - 2024-12-13 14:07:18 --> Başarıyla eklendi: AI dersinin tekrar et
+INFO - 2024-12-13 14:07:18 --> Görev grubu tamamlandı. Grup: 3
+INFO - 2024-12-13 14:07:18 --> Görev grubu işleniyor. Grup: 4, Görev sayısı: 3
+INFO - 2024-12-13 14:07:19 --> Başarıyla eklendi: Aliexpress ürünleri kontrol et
+INFO - 2024-12-13 14:07:20 --> Başarıyla eklendi: today exchange kontrol et notiondan
+INFO - 2024-12-13 14:07:20 --> Başarıyla eklendi: Blockchaing dersinin son iki hafatanin ozetini cikar
+INFO - 2024-12-13 14:07:20 --> Görev grubu tamamlandı. Grup: 4
+INFO - 2024-12-13 14:07:20 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-13 14:07:25 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-13 14:07:25 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 14:07:25 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-13 14:07:27 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 14:07:27 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-13 14:07:27 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 14:07:27 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+CRITICAL - 2024-12-13 14:07:28 --> ErrorException: Maximum execution time of 30 seconds exceeded
+[Method: GET, Route: /]
+in VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 693.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2024-12-13 14:09:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 14:09:20 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 14:09:21 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 14:09:21 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 625.
+ 1 APPPATH\Controllers\TickTickController.php(625): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(642): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 14:09:21 --> addTasksOfListsToNotion işlemine başlandı.
+WARNING - 2024-12-13 14:09:27 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-13 14:10:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 14:10:55 --> Basarili bir sekilde Listeler alindi
+CRITICAL - 2024-12-13 14:12:14 --> ErrorException: Maximum execution time of 30 seconds exceeded
+[Method: GET, Route: /]
+in VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 693.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2024-12-13 14:13:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 14:13:03 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 14:13:04 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 14:13:04 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 625.
+ 1 APPPATH\Controllers\TickTickController.php(625): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(642): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 14:13:05 --> addTasksOfListsToNotion işlemine başlandı.
+WARNING - 2024-12-13 14:13:09 --> Başarılı bir şekilde Notion'a listeler gönderildi.
