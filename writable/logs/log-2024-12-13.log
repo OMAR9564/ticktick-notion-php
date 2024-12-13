@@ -1,0 +1,378 @@
+INFO - 2024-12-13 08:18:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-13 08:18:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-13 08:18:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:18:46 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:18:47 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:18:48 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:18:48 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:18:48 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+ERROR - 2024-12-13 08:18:49 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/6166b6aea58f1104ed052345/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"g8bu1keu@tw9","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-12-13 08:18:49 --> Error Response: {"errorId":"g8bu1keu@tw9","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+CRITICAL - 2024-12-13 08:18:49 --> TypeError: Cannot access offset of type string on string
+[Method: GET, Route: ticktick]
+in APPPATH\Controllers\TickTickController.php on line 442.
+ 1 APPPATH\Controllers\TickTickController.php(419): App\Controllers\TickTickController->addTasksOfListToNotion()
+ 2 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 08:19:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:19:10 --> Basarili bir sekilde giris yapildi
+INFO - 2024-12-13 08:19:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:19:11 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:19:12 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:19:12 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:19:12 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:19:12 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:19:14 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:23:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:23:24 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:23:25 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:23:25 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:23:25 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:23:25 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:23:27 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:25:52 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:25:53 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:25:57 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:25:57 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:25:57 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:25:58 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:28:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:28:05 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:28:06 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:28:07 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:28:07 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:28:07 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:28:08 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:29:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:29:02 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:29:03 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:29:04 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:29:04 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:29:04 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:29:05 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:39:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:39:31 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:39:32 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:39:33 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:39:33 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:39:33 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:39:34 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:41:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:41:45 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:41:46 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 08:41:47 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 08:41:47 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:41:47 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-13 08:41:48 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-13 08:59:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 08:59:58 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 08:59:59 --> Başarılı bir şekilde Notion'dan listeler alındı
+WARNING - 2024-12-13 08:59:59 --> Başarılı bir şekilde Notion'a listeler gönderildi
+INFO - 2024-12-13 08:59:59 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-13 08:59:59 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-13 09:00:02 --> Basarili bir sekilde Listelerin tasklari alindi
+ERROR - 2024-12-13 09:00:16 --> Hata: Array to string conversion
+INFO - 2024-12-13 09:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:07:52 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:07:53 --> Başarılı bir şekilde Notion'dan listeler alındı
+ERROR - 2024-12-13 09:07:53 --> Hata: Client error: `PATCH https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation. Fix one:\nbody.properties.Ca (truncated...)
+
+INFO - 2024-12-13 09:12:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:12:10 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:12:11 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:12:19 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:12:20 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:14:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:14:13 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:14:14 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:15:03 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:15:04 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:16:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:16:12 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:16:13 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:16:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:16:49 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:16:50 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:54:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:54:28 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:54:29 --> Basarili bir sekilde Notiondan Listeler alindi
+CRITICAL - 2024-12-13 09:57:30 --> ParseError: syntax error, unexpected token "catch"
+[Method: GET, Route: /]
+in APPPATH\Controllers\TickTickController.php on line 431.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists()
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 09:58:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:58:26 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:58:27 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:59:23 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:59:24 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 09:59:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 09:59:48 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 09:59:49 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:00:32 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:00:33 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:00:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:00:42 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:00:43 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:00:51 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:00:53 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:01:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:01:40 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:01:41 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:03:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:03:25 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:03:26 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:05:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:05:51 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:05:53 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:07:10 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:07:11 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:09:00 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:09:01 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:09:02 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 10:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:09:32 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:09:34 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:09:35 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 10:10:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:10:10 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:10:11 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:10:12 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 10:11:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:11:17 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:11:18 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:11:18 --> Basarili bir sekilde Notiona Listeler gonderildi
+INFO - 2024-12-13 10:11:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:12:00 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:12:01 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:12:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:12:40 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:12:41 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:13:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:13:20 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:13:21 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:14:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:14:17 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:14:18 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:14:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:14:30 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:14:31 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:15:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:15:49 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:15:50 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:17:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-12-13 10:17:01 --> GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: api.ticktick.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://api.ticktick.com/open/v1/project
+[Method: GET, Route: /]
+in VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 275.
+ 1 VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php(205): GuzzleHttp\Handler\CurlFactory::createRejection()
+ 2 VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php(157): GuzzleHttp\Handler\CurlFactory::finishError()
+ 3 VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish()
+ 4 VENDORPATH\guzzlehttp\guzzle\src\Handler\Proxy.php(28): GuzzleHttp\Handler\CurlHandler->__invoke()
+ 5 VENDORPATH\guzzlehttp\guzzle\src\Handler\Proxy.php(48): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+ 6 VENDORPATH\guzzlehttp\guzzle\src\PrepareBodyMiddleware.php(35): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+ 7 VENDORPATH\guzzlehttp\guzzle\src\Middleware.php(31): GuzzleHttp\PrepareBodyMiddleware->__invoke()
+ 8 VENDORPATH\guzzlehttp\guzzle\src\RedirectMiddleware.php(71): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+ 9 VENDORPATH\guzzlehttp\guzzle\src\Middleware.php(66): GuzzleHttp\RedirectMiddleware->__invoke()
+10 VENDORPATH\guzzlehttp\guzzle\src\HandlerStack.php(75): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+11 VENDORPATH\guzzlehttp\guzzle\src\Client.php(333): GuzzleHttp\HandlerStack->__invoke()
+12 VENDORPATH\guzzlehttp\guzzle\src\Client.php(169): GuzzleHttp\Client->transfer()
+13 VENDORPATH\guzzlehttp\guzzle\src\Client.php(189): GuzzleHttp\Client->requestAsync()
+14 APPPATH\Controllers\TickTickController.php(124): GuzzleHttp\Client->request()
+15 APPPATH\Controllers\TickTickController.php(57): App\Controllers\TickTickController->getTickTickLists()
+16 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+17 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+18 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+19 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+20 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+21 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
+22 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 10:17:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-12-13 10:17:21 --> GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: api.ticktick.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://api.ticktick.com/open/v1/project
+[Method: GET, Route: /]
+in VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php on line 275.
+ 1 VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php(205): GuzzleHttp\Handler\CurlFactory::createRejection()
+ 2 VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlFactory.php(157): GuzzleHttp\Handler\CurlFactory::finishError()
+ 3 VENDORPATH\guzzlehttp\guzzle\src\Handler\CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish()
+ 4 VENDORPATH\guzzlehttp\guzzle\src\Handler\Proxy.php(28): GuzzleHttp\Handler\CurlHandler->__invoke()
+ 5 VENDORPATH\guzzlehttp\guzzle\src\Handler\Proxy.php(48): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+ 6 VENDORPATH\guzzlehttp\guzzle\src\PrepareBodyMiddleware.php(35): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+ 7 VENDORPATH\guzzlehttp\guzzle\src\Middleware.php(31): GuzzleHttp\PrepareBodyMiddleware->__invoke()
+ 8 VENDORPATH\guzzlehttp\guzzle\src\RedirectMiddleware.php(71): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+ 9 VENDORPATH\guzzlehttp\guzzle\src\Middleware.php(66): GuzzleHttp\RedirectMiddleware->__invoke()
+10 VENDORPATH\guzzlehttp\guzzle\src\HandlerStack.php(75): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+11 VENDORPATH\guzzlehttp\guzzle\src\Client.php(333): GuzzleHttp\HandlerStack->__invoke()
+12 VENDORPATH\guzzlehttp\guzzle\src\Client.php(169): GuzzleHttp\Client->transfer()
+13 VENDORPATH\guzzlehttp\guzzle\src\Client.php(189): GuzzleHttp\Client->requestAsync()
+14 APPPATH\Controllers\TickTickController.php(124): GuzzleHttp\Client->request()
+15 APPPATH\Controllers\TickTickController.php(57): App\Controllers\TickTickController->getTickTickLists()
+16 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+17 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+18 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+19 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+20 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+21 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
+22 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 10:17:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:17:34 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:17:36 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:25:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:25:07 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:25:08 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:26:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:26:14 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:26:14 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:27:42 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:27:43 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:33:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:33:19 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:33:21 --> Basarili bir sekilde Notiondan Listeler alindi
+INFO - 2024-12-13 10:36:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:36:19 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:36:20 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:36:20 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 516.
+ 1 APPPATH\Controllers\TickTickController.php(516): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(533): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 10:36:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:36:42 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:36:43 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:36:43 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 514.
+ 1 APPPATH\Controllers\TickTickController.php(514): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(531): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 10:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:37:01 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:37:02 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:37:02 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 513.
+ 1 APPPATH\Controllers\TickTickController.php(513): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(530): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-12-13 10:37:03 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-13 10:37:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:37:50 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:37:50 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:37:50 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 516.
+ 1 APPPATH\Controllers\TickTickController.php(516): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(533): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 10:38:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:38:23 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:38:25 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:38:25 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 516.
+ 1 APPPATH\Controllers\TickTickController.php(516): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(533): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-13 10:38:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:38:38 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:38:39 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:38:39 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 515.
+ 1 APPPATH\Controllers\TickTickController.php(515): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(532): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-12-13 10:38:40 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-13 10:39:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:39:35 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:39:36 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:39:36 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 515.
+ 1 APPPATH\Controllers\TickTickController.php(515): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(532): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-12-13 10:39:37 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-13 10:41:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-13 10:41:05 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-13 10:41:06 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-13 10:41:06 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 516.
+ 1 APPPATH\Controllers\TickTickController.php(516): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(533): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+WARNING - 2024-12-13 10:41:07 --> Başarılı bir şekilde Notion'a listeler gönderildi.

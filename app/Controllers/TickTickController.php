@@ -365,67 +365,66 @@ class TickTickController extends BaseController
                 // Mevcut seçenekleri sakla (referanslar için dizinleme)
                 $existingOptionsMap = array_column($existingOptions, null, 'description');
                 $newOptions = [];
-    
+                // Seçenekleri güncelleme işlemi
                 foreach ($lists as $list) {
                     $notionCategoryId = $list["id"];
                     $notionCategoryText = $list["name"];
-                    $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "");
-    
-                    if (isset($existingOptionsMap[$notionCategoryId])) {
-                        $existingOption = &$existingOptionsMap[$notionCategoryId]; // Referans ile al
-    
-                        if ($existingOption['name'] === $notionCategoryText) {
-                            continue;
+                    $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "default");
+
+                    $found = false;
+
+                    // Mevcut seçeneklerde arayın
+                    foreach ($existingOptions as $key => $existingOption) {
+                        if ($existingOption['description'] === $notionCategoryId) {
+                            // Aynı ID ile mevcut bir seçenek varsa, güncelle
+                            unset($existingOptions[$key]['id']);
+                            $existingOptions[$key]['name'] = $notionCategoryText;
+                            $found = true;
+                            break;
                         }
-    
-                        $existingOption['name'] = $notionCategoryText;
-                        $existingOption['description'] = $notionCategoryId;
-                    } else {
-                        // Yeni seçenek oluştur ve ekle
+                    }
+
+                    if (!$found) {
+                        // Yeni bir seçenek oluştur
                         $newOptions[] = [
-                            "description" => $notionCategoryId,
                             "name" => $notionCategoryText,
-                            "color" => $notionCategoryColor
+                            "color" => $notionCategoryColor,
+                            "description" => $notionCategoryId,
                         ];
                     }
-    
-                    // Mevcut ve yeni seçenekleri birleştir
-                    $allOptions = array_merge(array_values($existingOptionsMap), $newOptions);
+                }
 
-                    // Güncellenmiş seçeneklerle PATCH isteği gönder
-                    $data = [
-                        "properties" => [
-                            "Category" => [
-                                "select" => [
-                                    "options" => $allOptions,
-                                ]
+                
+                $allOptions = array_merge($existingOptions, $newOptions);
+                
+                // Güncellenmiş seçeneklerle PATCH isteği gönderin
+                $data = [
+                    "properties" => [
+                        "Category" => [
+                            "select" => [
+                                "options" => $allOptions,
                             ]
                         ]
-                    ];
+                    ]
+                ];
 
-                    $patchResponse = $client->request('PATCH', $url, [
-                        'headers' => [
-                            'Authorization' => "Bearer $this->notionToken",
-                            'Content-Type' => 'application/json',
-                            'Notion-Version' => '2022-06-28'
-                        ],
-                        'json' => $data
-                    ]);
-                    log_message('warning', "Basarili bir sekilde Notiona Listeler gonderildi");
+                $patchResponse = $client->request('PATCH', $url, [
+                    'headers' => [
+                        'Authorization' => "Bearer $this->notionToken",
+                        'Content-Type' => 'application/json',
+                        'Notion-Version' => '2022-06-28'
+                    ],
+                    'json' => $data
+                ]);
+                log_message('warning', "Başarılı bir şekilde Notion'a listeler gönderildi.");
 
-                    unset($client);
-
-                    // Görevleri al ve Notion'a ekle
-                    $resultAddTasksToNotion = $this->addTasksOfListToNotion($list);
-                    print_r($resultAddTasksToNotion);
-                    exit;
+                $patchHttpCode = $patchResponse->getStatusCode();
+                if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
+                    //$result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "task_messages" => $resultAddTasksToNotion['success']];
+                    $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi."];
+                } else {
+                    throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
                 }
-                // $patchHttpCode = $patchResponse->getStatusCode();
-                // if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
-                //     $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi."];
-                // } else {
-                //     throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
-                // }
             } catch (Exception $e) {
                 $result["errors"][] = ["error" => $e->getMessage()];
             }
@@ -447,19 +446,19 @@ class TickTickController extends BaseController
                 $taskData = [
                     "parent" => ["type" => "database_id", "database_id" => "1580ebdd798c809b8db4d4da56a193f2"],
                     "properties" => [
-                        "Title" => ["title" => [[ // title yerine rich_text kullan
-                            "type" => "text", 
+                        "Name" => ["title" => [[
+                            "type" => "text",
                             "text" => ["content" => $task['title']]
                         ]]],
-                        "Content" => ["rich_text" => [[ // Content zaten rich_text
-                            "type" => "text", 
+                        "Content" => ["rich_text" => [[
+                            "type" => "text",
                             "text" => ["content" => $task['content'] ?? '']
                         ]]],
-                        "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]], // Notion'un istediği tarih formatı
-                        "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]], // Aynı format
+                        "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]],
+                        "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]],
                         "Priority" => ["number" => $task['priority'] ?? 0],
-                        "Category" => ["select" => ["description" => $list["id"]]], 
-                        "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complete"]] 
+                        "Category" => ["select" => ["name" => $list["name"]]], // Doğru şekilde yapılandırıldı
+                        "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complete"]] // Doğru şekilde yapılandırıldı
                     ]
                 ];
                 // Tamamlanmış görevler için Completed Time ekle
