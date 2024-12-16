@@ -438,134 +438,134 @@ class TickTickController extends BaseController
         return $result;
     }
     
-    private function addTasksOfListsToNotion($lists)
+    private function addTasksOfListsToNotion(array $lists): array
     {
         $result = ["success" => [], "errors" => []];
         $client = new Client();
-        $groupSize = 10; // Her 10 görevde bir gönder
+        $groupSize = 10; // Görev grubu boyutu
         $maxExecutionTime = 20; // Maksimum çalışma süresi (saniye)
         $waitTime = 5; // Bekleme süresi (saniye)
 
         log_message('info', 'addTasksOfListsToNotion işlemine başlandı.');
-        $startTime = microtime(true); // İşlem başlangıç zamanı
+        $startTime = microtime(true);
 
-        // Mevcut Notion görevlerini al
-        $existingTasks = $this->getExistingTasksFromNotion();
-        return $existingTasks;
+        try {
+            // Mevcut Notion görevlerini al
+            $existingTasks = $this->getExistingTasksFromNotion();
 
-        foreach ($lists as $list) {
-            log_message('info', "Liste işleniyor: {$list['name']}");
+            foreach ($lists as $list) {
+                log_message('info', "Liste işleniyor: {$list['name']}");
 
-            $allTasksOfList = $this->getListTasks($list["id"]);
-            $tasksToProcess = array_filter(array_merge($allTasksOfList['uncompleted'], $allTasksOfList['completed']), function ($task) use ($existingTasks) {
-                // Mevcut Notion görevlerinde bu `ticktick_id` var mı kontrol et
-                return !isset($existingTasks[$task['id']]);
-            });
+                $listTasks = $this->getListTasks($list["id"]);
+                if (empty($listTasks)) {
+                    log_message('info', "Liste boş: {$list['name']}");
+                    continue;
+                }
 
-            $taskGroups = array_chunk($tasksToProcess, $groupSize); // Görevleri 10'arlı gruplara ayır
+                // Görevleri benzersiz hale getirmek için bir `id` tabanlı kontrol kullan
+                $tasksToProcess = [];
+                $processedIds = [];
 
-            foreach ($taskGroups as $groupIndex => $taskGroup) {
-                log_message('info', "Görev grubu işleniyor. Grup: {$groupIndex}, Görev sayısı: " . count($taskGroup));
+                $allTasks = array_merge($listTasks['uncompleted'], $listTasks['completed']);
 
-                $requests = function () use ($taskGroup, $list) {
-                    foreach ($taskGroup as $task) {
-                        $priorityName = "None"; // Varsayılan değer
-                        switch ($task['priority']) {
-                            case "1":
-                                $priorityName = "Low";
-                                break;
-                            case "3":
-                                $priorityName = "Medium";
-                                break;
-                            case "5":
-                                $priorityName = "High";
-                                break;
-                        }
+                foreach ($allTasks as $task) {
+                    $taskId = $task['id'];
+                    if (!isset($existingTasks[$taskId]) && !in_array($taskId, $processedIds)) {
+                        $tasksToProcess[] = $task;
+                        $processedIds[] = $taskId; // Bu `id`'yi işlenmiş olarak işaretle
+                    }
+                }
 
-                        $taskData = [
-                            "parent" => ["type" => "database_id", "database_id" => "1580ebdd798c809b8db4d4da56a193f2"],
-                            "properties" => [
-                                "Name" => ["title" => [[
-                                    "type" => "text",
-                                    "text" => ["content" => $task['title']]
-                                ]]],
-                                "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]],
-                                "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]],
-                                "Priority" => ["select" => ["name" => $priorityName]],
-                                "Category" => ["select" => ["name" => $list["name"]]], // Doğru şekilde yapılandırıldı
-                                "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complete"]],
-                                "Ticktick Id" => ["rich_text" => [[ 
-                                    "type" => "text", 
-                                    "text" => ["content" => $task['id'] ?? '']
-                                ]]],
-                            ],
-                            "children" => [ // Bloklar dizisi olarak tanımlanmalı
-                                [
+                $taskGroups = array_chunk($tasksToProcess, $groupSize);
+
+                foreach ($taskGroups as $groupIndex => $taskGroup) {
+                    log_message('info', "Görev grubu işleniyor. Grup: {$groupIndex}, Görev sayısı: " . count($taskGroup));
+
+                    $requests = function () use ($taskGroup, $list) {
+                        foreach ($taskGroup as $task) {
+                            $priorityName = match ($task['priority'] ?? "") {
+                                "1" => "Low",
+                                "3" => "Medium",
+                                "5" => "High",
+                                default => "None",
+                            };
+
+                            $taskData = [
+                                "parent" => ["type" => "database_id", "database_id" => "1580ebdd798c809b8db4d4da56a193f2"],
+                                "properties" => [
+                                    "Name" => ["title" => [["type" => "text", "text" => ["content" => $task['title']]]]],
+                                    "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]],
+                                    "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]],
+                                    "Priority" => ["select" => ["name" => $priorityName]],
+                                    "Category" => ["select" => ["name" => $list["name"]]],
+                                    "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complete"]],
+                                    "Ticktick Id" => ["rich_text" => [["type" => "text", "text" => ["content" => $task['id'] ?? '']]]],
+                                ],
+                                "children" => [[
                                     "object" => "block",
                                     "paragraph" => [
-                                        "rich_text" => [
-                                            [
-                                                "type" => "text",
-                                                "text" => [
-                                                    "content" => $task['content'] ?? ''
-                                                ]
-                                            ]
-                                        ]
+                                        "rich_text" => [["type" => "text", "text" => ["content" => $task['content'] ?? '']]]
                                     ]
-                                ]
-                            ]
-                        ];
+                                ]]
+                            ];
 
-                        yield new Request(
-                            'POST',
-                            'https://api.notion.com/v1/pages',
-                            [
-                                'Authorization' => "Bearer $this->notionToken",
-                                'Content-Type' => 'application/json',
-                                'Notion-Version' => '2022-06-28'
-                            ],
-                            json_encode($taskData)
-                        );
-                    }
-                };
+                            yield new Request(
+                                'POST',
+                                'https://api.notion.com/v1/pages',
+                                [
+                                    'Authorization' => "Bearer $this->notionToken",
+                                    'Content-Type' => 'application/json',
+                                    'Notion-Version' => '2022-06-28'
+                                ],
+                                json_encode($taskData)
+                            );
+                        }
+                    };
 
-                $pool = new Pool($client, $requests(), [
-                    'concurrency' => 5, // Eş zamanlı işlemler
-                    'fulfilled' => function ($response, $index) use (&$result, $taskGroup, $list) {
-                        if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
-                            $result["success"][] = [
+                    $pool = new Pool($client, $requests(), [
+                        'concurrency' => 5,
+                        'fulfilled' => function ($response, $index) use (&$result, $taskGroup, $list) {
+                            if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
+                                $result["success"][] = [
+                                    "list" => $list["name"],
+                                    "task" => $taskGroup[$index]['title'],
+                                    "message" => "Görev başarıyla eklendi."
+                                ];
+                                log_message('info', "Başarıyla eklendi: {$taskGroup[$index]['title']}");
+                            }
+                        },
+                        'rejected' => function ($reason, $index) use (&$result, $taskGroup, $list) {
+                            $errorMessage = $reason instanceof RequestException ? $reason->getMessage() : $reason;
+                            $result["errors"][] = [
                                 "list" => $list["name"],
                                 "task" => $taskGroup[$index]['title'],
-                                "message" => "Görev başarıyla eklendi."
+                                "error" => $errorMessage
                             ];
-                            log_message('info', "Başarıyla eklendi: {$taskGroup[$index]['title']}");
+                            log_message('error', "Hata: {$taskGroup[$index]['title']} - {$errorMessage}");
                         }
-                    },
-                    'rejected' => function ($reason, $index) use (&$result, $taskGroup, $list) {
-                        $result["errors"][] = [
-                            "list" => $list["name"],
-                            "task" => $taskGroup[$index]['title'],
-                            "error" => $reason instanceof RequestException ? $reason->getMessage() : $reason
-                        ];
-                        log_message('error', "Hata: {$taskGroup[$index]['title']} - " . ($reason instanceof RequestException ? $reason->getMessage() : $reason));
+                    ]);
+
+                    $pool->promise()->wait();
+                    log_message('info', "Görev grubu tamamlandı. Grup: {$groupIndex}");
+
+                    // Çalışma süresi kontrolü
+                    if ((microtime(true) - $startTime) >= $maxExecutionTime) {
+                        log_message('info', "Maksimum çalışma süresine ulaşıldı. {$waitTime} saniye bekleniyor...");
+                        sleep($waitTime);
+                        $startTime = microtime(true);
                     }
-                ]);
-
-                $pool->promise()->wait();
-                log_message('info', "Görev grubu tamamlandı. Grup: {$groupIndex}");
-
-                // Çalışma süresi kontrolü
-                if ((microtime(true) - $startTime) >= $maxExecutionTime) {
-                    log_message('info', "Maksimum çalışma süresine ulaşıldı. {$waitTime} saniye bekleniyor...");
-                    sleep($waitTime); // Bekleme süresi
-                    $startTime = microtime(true); // Zamanlayıcıyı sıfırla
                 }
             }
+        } catch (Exception $e) {
+            log_message('error', "İşlem sırasında bir hata oluştu: " . $e->getMessage());
+            $result["errors"][] = ["error" => $e->getMessage()];
         }
 
         log_message('info', 'addTasksOfListsToNotion işlemi tamamlandı.');
         return $result;
     }
+
+
     private function getExistingTasksFromNotion()
     {
         $client = new Client();
@@ -582,7 +582,7 @@ class TickTickController extends BaseController
             ]);
 
             $data = json_decode($response->getBody(), true);
-            return $data;
+
             // Hata kontrolü: Yanıt yapısının doğruluğunu kontrol et
             if (!isset($data['results']) || !is_array($data['results'])) {
                 throw new Exception("Unexpected response structure from Notion API.");
@@ -604,12 +604,6 @@ class TickTickController extends BaseController
 
         return $existingTasks;
     }
-
-
-    
-
-
-    
 
     /**
      * Hex kodunu R,G,B olarak döndürür.
