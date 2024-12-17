@@ -450,34 +450,38 @@ class TickTickController extends BaseController
         $startTime = microtime(true);
 
         try {
+            $today = date('Y-m-d'); // Bugünün tarihi
 
             foreach ($lists as $list) {
                 log_message('info', "Liste işleniyor: {$list['name']}");
                 
                 // Mevcut Notion görevlerini al
                 $existingTasks = $this->getExistingTasksFromNotion($list['name']);
-                
+
+                // Bugünün görevlerini belirle
                 $listTasks = $this->getListTasks($list["id"]);
                 if (empty($listTasks)) {
                     log_message('info', "Liste boş: {$list['name']}");
                     continue;
                 }
 
-                // Görevleri benzersiz hale getirmek için bir `id` tabanlı kontrol kullan
-                $tasksToProcess = [];
-                $processedIds = [];
-
                 $allTasks = array_merge($listTasks['uncompleted'], $listTasks['completed']);
+                $todayTasks = array_filter($allTasks, function ($task) use ($today) {
+                    return date('Y-m-d', strtotime($task['modifiedTime'])) === $today;
+                });
 
-                foreach ($allTasks as $task) {
-                    $taskId = $task['id'];
-                    if (!isset($existingTasks[$taskId]) && !in_array($taskId, $processedIds)) {
-                        $tasksToProcess[] = $task;
-                        $processedIds[] = $taskId; // Bu `id`'yi işlenmiş olarak işaretle
+                // Notion'daki mevcut görevleri sil
+                foreach ($todayTasks as $task) {
+                    $tickTickId = $task['id'] ?? '';
+                    if ($tickTickId && isset($existingTasks[$tickTickId])) {
+                        $this->deleteTasksByTickTickIdFromNotion($tickTickId);
+                        log_message('info', "Notion'dan silindi: {$task['title']}");
                     }
+                    
                 }
 
-                $taskGroups = array_chunk($tasksToProcess, $groupSize);
+                // Görevleri yeniden ekle
+                $taskGroups = array_chunk($todayTasks, $groupSize);
 
                 foreach ($taskGroups as $groupIndex => $taskGroup) {
                     log_message('info', "Görev grubu işleniyor. Grup: {$groupIndex}, Görev sayısı: " . count($taskGroup));
@@ -527,22 +531,12 @@ class TickTickController extends BaseController
                         'concurrency' => 5,
                         'fulfilled' => function ($response, $index) use (&$result, $taskGroup, $list) {
                             if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
-                                $result["success"][] = [
-                                    "list" => $list["name"],
-                                    "task" => $taskGroup[$index]['title'],
-                                    "message" => "Görev başarıyla eklendi."
-                                ];
-                                log_message('info', "Başarıyla eklendi: {$taskGroup[$index]['title']}");
+                                $result["success"][] = ["list" => $list["name"], "task" => $taskGroup[$index]['title']];
                             }
                         },
                         'rejected' => function ($reason, $index) use (&$result, $taskGroup, $list) {
                             $errorMessage = $reason instanceof RequestException ? $reason->getMessage() : $reason;
-                            $result["errors"][] = [
-                                "list" => $list["name"],
-                                "task" => $taskGroup[$index]['title'],
-                                "error" => $errorMessage
-                            ];
-                            log_message('error', "Hata: {$taskGroup[$index]['title']} - {$errorMessage}");
+                            $result["errors"][] = ["list" => $list["name"], "task" => $taskGroup[$index]['title'], "error" => $errorMessage];
                         }
                     ]);
 
@@ -551,20 +545,76 @@ class TickTickController extends BaseController
 
                     // Çalışma süresi kontrolü
                     if ((microtime(true) - $startTime) >= $maxExecutionTime) {
-                        log_message('info', "Maksimum çalışma süresine ulaşıldı. {$waitTime} saniye bekleniyor...");
                         sleep($waitTime);
                         $startTime = microtime(true);
                     }
                 }
             }
         } catch (Exception $e) {
-            log_message('error', "İşlem sırasında bir hata oluştu: " . $e->getMessage());
-            $result["errors"][] = ["error" => $e->getMessage()];
+            log_message('error', $e->getMessage());
         }
 
-        log_message('info', 'addTasksOfListsToNotion işlemi tamamlandı.');
         return $result;
     }
+
+    private function deleteTasksByTickTickIdFromNotion($tickTickId)
+    {
+        $client = new Client();
+        try {
+            $response = $client->request('POST', "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2/query", [
+                'headers' => [
+                    'Authorization' => "Bearer $this->notionToken",
+                    'Content-Type' => 'application/json',
+                    'Notion-Version' => '2022-06-28'
+                ],
+                'json' => [
+                    'filter' => [
+                        'property' => 'Ticktick Id',
+                        'rich_text' => [
+                            'equals' => $tickTickId
+                        ]
+                    ]
+                ]
+            ]);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+            $pages = $data['results'] ?? [];
+
+            if (empty($pages)) {
+                log_message('info', "No pages found for TickTick ID: $tickTickId");
+                return false;
+            }
+
+            
+            foreach ($pages as $page) {
+                $pageId = $page['id'];
+                $this->deleteTaskFromNotion($pageId);
+            }
+        } catch (Exception $e) {
+            log_message('error', "Silme hatası: {$e->getMessage()}");
+        }
+    }
+
+    private function deleteTaskFromNotion($pageId)
+    {
+        $client = new Client();
+        try {
+            $client->request('PATCH', "https://api.notion.com/v1/pages/{$pageId}", [
+                'headers' => [
+                    'Authorization' => "Bearer $this->notionToken",
+                    'Notion-Version' => '2022-06-28'
+                ],
+                'json' => [
+                    'archived' => true,
+                    'in_trash' => true
+                ]
+            ]);
+            log_message('info', "Notion'dan görev silindi: {$pageId}");
+        } catch (Exception $e) {
+            log_message('error', "Silme hatası: {$e->getMessage()}");
+        }
+    }
+
 
 
     private function getExistingTasksFromNotion($categoryName)
