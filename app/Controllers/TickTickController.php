@@ -450,12 +450,13 @@ class TickTickController extends BaseController
         $startTime = microtime(true);
 
         try {
-            // Mevcut Notion görevlerini al
-            $existingTasks = $this->getExistingTasksFromNotion();
 
             foreach ($lists as $list) {
                 log_message('info', "Liste işleniyor: {$list['name']}");
-
+                
+                // Mevcut Notion görevlerini al
+                $existingTasks = $this->getExistingTasksFromNotion($list['name']);
+                
                 $listTasks = $this->getListTasks($list["id"]);
                 if (empty($listTasks)) {
                     log_message('info', "Liste boş: {$list['name']}");
@@ -566,7 +567,7 @@ class TickTickController extends BaseController
     }
 
 
-    private function getExistingTasksFromNotion()
+    private function getExistingTasksFromNotion($categoryName)
     {
         $client = new Client();
         $existingTasks = [];
@@ -582,14 +583,20 @@ class TickTickController extends BaseController
                         'Authorization' => "Bearer $this->notionToken",
                         'Content-Type' => 'application/json',
                         'Notion-Version' => '2022-06-28'
+                    ],
+                    'json' => [
+                        'filter' => [
+                            'property' => 'Category',
+                            'select' => [
+                                'equals' => $categoryName
+                            ]
+                        ]
                     ]
                 ];
                 
                 // Sayfanın başlangıç değerini ekle
                 if ($startCursor) {
-                    $options['json'] = [
-                        'start_cursor' => $startCursor
-                    ];
+                    $options['json']['start_cursor'] = $startCursor;
                 }
                 
                 // API isteği
@@ -621,6 +628,7 @@ class TickTickController extends BaseController
 
         return $existingTasks;
     }
+
 
 
     /**

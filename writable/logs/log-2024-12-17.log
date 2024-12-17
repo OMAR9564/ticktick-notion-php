@@ -447,3 +447,807 @@ INFO - 2024-12-17 08:45:08 --> Başarıyla eklendi: Edit ve Create e ozel kodlar
 INFO - 2024-12-17 08:45:08 --> Görev grubu tamamlandı. Grup: 5
 INFO - 2024-12-17 08:45:08 --> addTasksOfListsToNotion işlemi tamamlandı.
 WARNING - 2024-12-17 08:45:08 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:07:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-17 13:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-12-17 13:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:07:47 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:07:49 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:07:49 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:07:49 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:07:49 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:07:51 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:07:51 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+ERROR - 2024-12-17 13:07:53 --> API Request Error: Client error: `GET https://api.ticktick.com/api/v2/project/6166b5d051359104ed051f4b/tasks` resulted in a `401 Unauthorized` response:
+{"errorId":"uosiqnjn@tw11","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+
+ERROR - 2024-12-17 13:07:53 --> Error Response: {"errorId":"uosiqnjn@tw11","errorCode":"user_not_sign_on","errorMessage":"user_not_sign_on","data":null}
+CRITICAL - 2024-12-17 13:07:53 --> TypeError: Cannot access offset of type string on string
+[Method: GET, Route: ticktick]
+in APPPATH\Controllers\TickTickController.php on line 470.
+ 1 APPPATH\Controllers\TickTickController.php(420): App\Controllers\TickTickController->addTasksOfListsToNotion()
+ 2 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:08:28 --> Basarili bir sekilde giris yapildi
+INFO - 2024-12-17 13:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:08:30 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:08:30 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:08:30 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:08:31 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:08:31 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:08:34 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:34 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:08:35 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:35 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:08:37 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:37 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:08:39 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:39 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:08:39 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:39 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:08:41 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:41 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:08:43 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:43 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:08:44 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:44 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:08:45 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:45 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:08:46 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:46 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:08:47 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:47 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:08:49 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:49 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:08:50 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:50 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:08:52 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:52 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:08:55 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:08:55 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:08:56 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:08:56 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:08:57 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:08:57 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:08:57 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:09:02 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:09:02 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:09:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:09:19 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:09:20 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:09:20 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:09:21 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:09:21 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:09:25 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:25 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:09:27 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:27 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+INFO - 2024-12-17 13:09:29 --> Başarıyla eklendi: Süt
+INFO - 2024-12-17 13:09:29 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:09:29 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:09:32 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:32 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:09:33 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:33 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:09:34 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:34 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:09:36 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:36 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:09:40 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:40 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:09:41 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:41 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:09:43 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:43 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:09:44 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:44 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:09:45 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:45 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:09:46 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:46 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:09:47 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:47 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:09:48 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:48 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:09:50 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:09:50 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:09:51 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:09:51 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:09:52 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:09:52 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:09:52 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:09:57 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:09:57 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:10:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:10:21 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:10:22 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:10:22 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:10:23 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:10:23 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:10:27 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:27 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:10:28 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:28 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:10:30 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:30 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:10:31 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:31 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:10:32 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:32 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:10:33 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:33 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:10:36 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:36 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:10:38 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:38 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:10:39 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:39 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:10:40 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:40 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:10:43 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:43 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:10:44 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:44 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:10:49 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:49 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:10:50 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:50 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:10:52 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:10:52 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:10:53 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:10:53 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:10:54 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:10:54 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:10:54 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:10:59 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:10:59 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:11:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:11:22 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:11:23 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:11:23 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:11:24 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:11:24 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:11:26 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:26 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:11:28 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:28 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:11:30 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:30 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:11:31 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:31 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:11:32 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:32 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:11:34 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:34 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:11:38 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:38 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:11:40 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:40 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:11:41 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:41 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:11:42 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:42 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:11:43 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:43 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:11:44 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:44 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:11:46 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:46 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:11:47 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:47 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:11:50 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:11:50 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:11:51 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:11:51 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:11:52 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:11:52 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:11:52 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:11:57 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:11:57 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:15:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:15:07 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:15:08 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:15:08 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:15:09 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:15:09 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:15:12 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:12 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:15:14 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:14 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+INFO - 2024-12-17 13:15:15 --> Başarıyla eklendi: Süt
+INFO - 2024-12-17 13:15:15 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:15:15 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:15:17 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:17 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:15:19 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:19 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:15:20 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:20 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:15:21 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:21 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:15:24 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:24 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:15:26 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:26 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:15:26 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:26 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:15:28 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:28 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:15:29 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:29 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:15:30 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:30 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:15:31 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:31 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:15:32 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:32 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:15:34 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:15:34 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:15:35 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:15:35 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:15:36 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:15:36 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:15:36 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:15:41 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:15:41 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:16:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:16:08 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:16:12 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:16:12 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:16:13 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:16:13 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:16:15 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:15 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:16:16 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:16 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+INFO - 2024-12-17 13:16:18 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:16:18 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:16:18 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:16:22 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:22 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:16:24 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:24 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:16:25 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:25 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:16:26 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:26 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:16:29 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:29 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:16:30 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:30 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:16:31 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:31 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:16:32 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:32 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:16:33 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:33 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:16:35 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:35 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:16:35 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:35 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:16:37 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:37 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:16:40 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:16:40 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:16:42 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:16:42 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:16:42 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:16:42 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:16:42 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:16:47 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:16:47 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:18:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:18:23 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:18:24 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:18:24 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:18:25 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:18:25 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:18:26 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:18:26 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:18:27 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:18:27 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 10
+INFO - 2024-12-17 13:18:28 --> Başarıyla eklendi: Dendırant
+INFO - 2024-12-17 13:18:29 --> Başarıyla eklendi: Uzun beyaz çoraplar 
+INFO - 2024-12-17 13:18:29 --> Başarıyla eklendi: Atlet
+INFO - 2024-12-17 13:18:29 --> Başarıyla eklendi: Kılıf
+INFO - 2024-12-17 13:18:29 --> Başarıyla eklendi: Kornflex
+INFO - 2024-12-17 13:18:29 --> Başarıyla eklendi: Silgi
+INFO - 2024-12-17 13:18:30 --> Başarıyla eklendi: Kalem
+INFO - 2024-12-17 13:18:30 --> Başarıyla eklendi: Su
+INFO - 2024-12-17 13:18:37 --> Başarıyla eklendi: Uyku bandı 
+INFO - 2024-12-17 13:18:39 --> Başarıyla eklendi: Defter kareli
+INFO - 2024-12-17 13:18:39 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:18:39 --> Görev grubu işleniyor. Grup: 1, Görev sayısı: 10
+INFO - 2024-12-17 13:18:39 --> Başarıyla eklendi: İlaç
+INFO - 2024-12-17 13:18:39 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:18:40 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:18:40 --> Başarıyla eklendi: Ekmek
+INFO - 2024-12-17 13:18:40 --> Başarıyla eklendi: Hurma
+INFO - 2024-12-17 13:18:40 --> Başarıyla eklendi: Highligt kalemi
+INFO - 2024-12-17 13:18:40 --> Başarıyla eklendi: Hurma
+INFO - 2024-12-17 13:18:41 --> Başarıyla eklendi: İşaretci yapışkanlı kağıtlar
+INFO - 2024-12-17 13:18:41 --> Başarıyla eklendi: Hurma
+INFO - 2024-12-17 13:18:42 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:18:42 --> Görev grubu tamamlandı. Grup: 1
+INFO - 2024-12-17 13:18:42 --> Görev grubu işleniyor. Grup: 2, Görev sayısı: 10
+INFO - 2024-12-17 13:18:42 --> Başarıyla eklendi: Corn flex
+INFO - 2024-12-17 13:18:43 --> Başarıyla eklendi: Corn flex 
+INFO - 2024-12-17 13:18:43 --> Başarıyla eklendi: Corn flex
+INFO - 2024-12-17 13:18:43 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:18:43 --> Başarıyla eklendi: Kiptir
+INFO - 2024-12-17 13:18:43 --> Başarıyla eklendi: Pet şişe su
+INFO - 2024-12-17 13:18:44 --> Başarıyla eklendi: Meyve suyu
+INFO - 2024-12-17 13:18:44 --> Başarıyla eklendi: Fıstık 10
+INFO - 2024-12-17 13:18:49 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:18:51 --> Başarıyla eklendi: Süt9564
+INFO - 2024-12-17 13:18:51 --> Görev grubu tamamlandı. Grup: 2
+INFO - 2024-12-17 13:18:51 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:18:56 --> Görev grubu işleniyor. Grup: 3, Görev sayısı: 10
+INFO - 2024-12-17 13:18:57 --> Başarıyla eklendi: Diş fırçası 
+INFO - 2024-12-17 13:18:57 --> Başarıyla eklendi: Corn flex
+INFO - 2024-12-17 13:18:57 --> Başarıyla eklendi: Biskivi
+INFO - 2024-12-17 13:18:58 --> Başarıyla eklendi: Hurma
+INFO - 2024-12-17 13:18:58 --> Başarıyla eklendi: Peçete
+INFO - 2024-12-17 13:18:59 --> Başarıyla eklendi: Peçete
+INFO - 2024-12-17 13:18:59 --> Başarıyla eklendi: Süt
+INFO - 2024-12-17 13:18:59 --> Başarıyla eklendi: Süt 
+INFO - 2024-12-17 13:19:00 --> Başarıyla eklendi: Pide4
+INFO - 2024-12-17 13:19:01 --> Başarıyla eklendi: Hurma
+INFO - 2024-12-17 13:19:01 --> Görev grubu tamamlandı. Grup: 3
+INFO - 2024-12-17 13:19:01 --> Görev grubu işleniyor. Grup: 4, Görev sayısı: 10
+INFO - 2024-12-17 13:19:01 --> Başarıyla eklendi: Maske 
+INFO - 2024-12-17 13:19:02 --> Başarıyla eklendi: Süt tam yağlı 
+INFO - 2024-12-17 13:19:02 --> Başarıyla eklendi: Kış çayı
+INFO - 2024-12-17 13:19:02 --> Başarıyla eklendi: Sakız
+INFO - 2024-12-17 13:19:03 --> Başarıyla eklendi: İlaç
+INFO - 2024-12-17 13:19:03 --> Başarıyla eklendi: Çizi al bir kaç tane 
+INFO - 2024-12-17 13:19:04 --> Başarıyla eklendi: Yemek al
+INFO - 2024-12-17 13:19:06 --> Başarıyla eklendi: Maske al 
+INFO - 2024-12-17 13:19:06 --> Başarıyla eklendi: Peçete Havlu
+INFO - 2024-12-17 13:19:06 --> Başarıyla eklendi: Islak mendil 
+INFO - 2024-12-17 13:19:06 --> Görev grubu tamamlandı. Grup: 4
+INFO - 2024-12-17 13:19:06 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:19:07 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:19:07 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:19:08 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:19:08 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 10
+INFO - 2024-12-17 13:19:09 --> Başarıyla eklendi: Doker arastir
+INFO - 2024-12-17 13:19:09 --> Başarıyla eklendi: php kursu
+INFO - 2024-12-17 13:19:09 --> Başarıyla eklendi: omer
+INFO - 2024-12-17 13:19:09 --> Başarıyla eklendi: test
+INFO - 2024-12-17 13:19:10 --> Başarıyla eklendi: Leptopu temizle
+INFO - 2024-12-17 13:19:10 --> Başarıyla eklendi: today ITIL kurusu tamamla
+INFO - 2024-12-17 13:19:10 --> Başarıyla eklendi: Elastik Search
+INFO - 2024-12-17 13:19:10 --> Başarıyla eklendi: Python Programlama odevi
+INFO - 2024-12-17 13:19:11 --> Başarıyla eklendi: Bitirme projesi
+INFO - 2024-12-17 13:19:18 --> Başarıyla eklendi: Js kursu
+INFO - 2024-12-17 13:19:18 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:19:18 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:19:23 --> Görev grubu işleniyor. Grup: 1, Görev sayısı: 10
+INFO - 2024-12-17 13:19:23 --> Başarıyla eklendi: today close spotify sub
+INFO - 2024-12-17 13:19:23 --> Başarıyla eklendi: Linkedin düzelt
+INFO - 2024-12-17 13:19:24 --> Başarıyla eklendi: test
+INFO - 2024-12-17 13:19:24 --> Başarıyla eklendi: Etom ne
+INFO - 2024-12-17 13:19:24 --> Başarıyla eklendi: Pure php
+INFO - 2024-12-17 13:19:24 --> Başarıyla eklendi: Etik dersi final odevi 1
+INFO - 2024-12-17 13:19:24 --> Başarıyla eklendi: Etik dersi final odevi 2
+INFO - 2024-12-17 13:19:25 --> Başarıyla eklendi: Algoritma analizi sinavi
+INFO - 2024-12-17 13:19:25 --> Başarıyla eklendi: Bildirim iconu gorunmuyor
+INFO - 2024-12-17 13:19:27 --> Başarıyla eklendi: Learn Php
+INFO - 2024-12-17 13:19:27 --> Görev grubu tamamlandı. Grup: 1
+INFO - 2024-12-17 13:19:27 --> Görev grubu işleniyor. Grup: 2, Görev sayısı: 10
+INFO - 2024-12-17 13:19:28 --> Başarıyla eklendi: Siber guvenlik sinavi
+INFO - 2024-12-17 13:19:28 --> Başarıyla eklendi: Algoritma analizi sinavi
+INFO - 2024-12-17 13:19:28 --> Başarıyla eklendi: Siber guvenlik sinavi
+INFO - 2024-12-17 13:19:28 --> Başarıyla eklendi: Isletim sistemleri
+INFO - 2024-12-17 13:19:28 --> Başarıyla eklendi: BLOCKCHAIN
+INFO - 2024-12-17 13:19:28 --> Başarıyla eklendi: Yapay zeka sinavi
+INFO - 2024-12-17 13:19:29 --> Başarıyla eklendi: Hilal Doktor icin wp status icin ozel bir tasarim yap
+INFO - 2024-12-17 13:19:29 --> Başarıyla eklendi: Algoritma hocaya sistem programlama gönder
+INFO - 2024-12-17 13:19:30 --> Başarıyla eklendi: Isletim sistemleri
+INFO - 2024-12-17 13:19:34 --> Başarıyla eklendi: Yapay zeka sinavi
+INFO - 2024-12-17 13:19:34 --> Görev grubu tamamlandı. Grup: 2
+INFO - 2024-12-17 13:19:34 --> Görev grubu işleniyor. Grup: 3, Görev sayısı: 10
+INFO - 2024-12-17 13:19:35 --> Başarıyla eklendi: Ödevi yap algoritma
+INFO - 2024-12-17 13:19:35 --> Başarıyla eklendi: Ai ödevi
+INFO - 2024-12-17 13:19:35 --> Başarıyla eklendi: Isletim sistemleri
+INFO - 2024-12-17 13:19:35 --> Başarıyla eklendi: Algoritma anlizi dersinin tekrarı yap ve özetini çıkae
+INFO - 2024-12-17 13:19:36 --> Başarıyla eklendi: Hamza harita proje
+INFO - 2024-12-17 13:19:36 --> Başarıyla eklendi: Algoritma analizi tekrar
+INFO - 2024-12-17 13:19:36 --> Başarıyla eklendi: Etik dersinin özetini çıkar
+INFO - 2024-12-17 13:19:36 --> Başarıyla eklendi: Blockchain raporu
+INFO - 2024-12-17 13:19:37 --> Başarıyla eklendi: خطط كلمة الله
+INFO - 2024-12-17 13:19:37 --> Başarıyla eklendi: Siber Gunvelik dersinin tekrari
+INFO - 2024-12-17 13:19:37 --> Görev grubu tamamlandı. Grup: 3
+INFO - 2024-12-17 13:19:37 --> Görev grubu işleniyor. Grup: 4, Görev sayısı: 10
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: Bütün özetler sınava hazır olduğunu kontrol et
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: AI dersinin ozetini cikar
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: Blockchaing dersinin ozetlerini kontrol et ve son iki haftayi duzenle
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: Sianvlar icin prgorami ayarla
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: Scrum dersi ozetini cikar
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: AI Dersinin odevnini yap ve gonder
+INFO - 2024-12-17 13:19:38 --> Başarıyla eklendi: AI dersinin tekrar et
+INFO - 2024-12-17 13:19:39 --> Başarıyla eklendi: Isletim Sistemleri Notalari hazirla
+INFO - 2024-12-17 13:19:39 --> Başarıyla eklendi: Blockchaing dersinin son iki hafatanin ozetini cikar
+INFO - 2024-12-17 13:19:39 --> Başarıyla eklendi: Aliexpress ürünleri kontrol et
+INFO - 2024-12-17 13:19:39 --> Görev grubu tamamlandı. Grup: 4
+INFO - 2024-12-17 13:19:39 --> Görev grubu işleniyor. Grup: 5, Görev sayısı: 10
+INFO - 2024-12-17 13:19:40 --> Başarıyla eklendi: Blochchain dersi için aydın ekle grup
+INFO - 2024-12-17 13:19:40 --> Başarıyla eklendi: Etik dersinin özetini çıkar
+INFO - 2024-12-17 13:19:41 --> Başarıyla eklendi: Siber güvenlik tekrarı yap
+INFO - 2024-12-17 13:19:41 --> Başarıyla eklendi: today exchange kontrol et notiondan
+INFO - 2024-12-17 13:19:41 --> Başarıyla eklendi: isletim sitemeleri 4.hafta tekrari
+INFO - 2024-12-17 13:19:42 --> Başarıyla eklendi: Cevik dersinin ozetini cikar
+INFO - 2024-12-17 13:19:42 --> Başarıyla eklendi: Blockchain  ödevi 2 kismi yaz
+INFO - 2024-12-17 13:19:42 --> Başarıyla eklendi: Ai dersi geçen haftanın dersi özetini yaz
+INFO - 2024-12-17 13:19:43 --> Başarıyla eklendi: Haftaya icin plan yap
+INFO - 2024-12-17 13:19:44 --> Başarıyla eklendi: Dolar satışı ve alışı için notionda ayrla
+INFO - 2024-12-17 13:19:44 --> Görev grubu tamamlandı. Grup: 5
+INFO - 2024-12-17 13:19:44 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:19:49 --> Görev grubu işleniyor. Grup: 6, Görev sayısı: 1
+INFO - 2024-12-17 13:19:50 --> Başarıyla eklendi: Aylık harcamaları kontrol et
+INFO - 2024-12-17 13:19:50 --> Görev grubu tamamlandı. Grup: 6
+INFO - 2024-12-17 13:19:50 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:19:51 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:19:51 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:19:52 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:19:52 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 6
+INFO - 2024-12-17 13:19:52 --> Başarıyla eklendi: Read min. 10 Books
+INFO - 2024-12-17 13:19:52 --> Başarıyla eklendi: 2 time Khatim Kuran
+INFO - 2024-12-17 13:19:52 --> Başarıyla eklendi: Finish Cyber Security Analysis
+INFO - 2024-12-17 13:19:53 --> Başarıyla eklendi: English to B2
+INFO - 2024-12-17 13:19:53 --> Başarıyla eklendi: Learn daha fazla about Islam
+INFO - 2024-12-17 13:19:53 --> Başarıyla eklendi: 2 Ay boyunca günlük  olarak günlük yaz
+INFO - 2024-12-17 13:19:53 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:19:53 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:19:54 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:19:54 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:19:55 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:19:55 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 10
+INFO - 2024-12-17 13:19:56 --> Başarıyla eklendi: Decrypt edildiginde eger sifre yanlissa error vermesin sifre hatali oldugunu uyari versin
+INFO - 2024-12-17 13:19:56 --> Başarıyla eklendi: cansel yapildignda bir hata sacma sey oluyor
+INFO - 2024-12-17 13:19:56 --> Başarıyla eklendi: main kisminda aciklamalari ekle
+INFO - 2024-12-17 13:19:56 --> Başarıyla eklendi: encrypt ve decrypt oldugnda dosyayi nerde kayit edecegini yazan bir kodu yaz
+INFO - 2024-12-17 13:19:56 --> Başarıyla eklendi: Encrypt decrypt algilasin
+INFO - 2024-12-17 13:19:56 --> Başarıyla eklendi: password ile AES kodu olustur
+INFO - 2024-12-17 13:19:57 --> Başarıyla eklendi: Saatler seçildiğinde baslangic saati ve kapanış saati ayarla
+INFO - 2024-12-17 13:19:58 --> Başarıyla eklendi: sifrelenmis kodu yapilirsa uyari versin
+INFO - 2024-12-17 13:19:58 --> Başarıyla eklendi: Eğer aralık saatleri değiştirmek istiyorsa
+INFO - 2024-12-17 13:19:59 --> Başarıyla eklendi: desifrelenmis edildiginde de uyari versin
+INFO - 2024-12-17 13:19:59 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:19:59 --> Görev grubu işleniyor. Grup: 1, Görev sayısı: 10
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: Danisanlar listesi diye bolum ekle
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: herseyi sessiona donustur admin sayfalarinda
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: Bilgilendirme mesajlari yaz kosede
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: link hep sifirlansin
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: edit yaparken iki kisi yani zamanda randevu alma olayi ve noramlde
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: logo db ekle
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: calendar icin her bir kullanici icin ayri bir dosya olmasi lazim
+INFO - 2024-12-17 13:20:00 --> Başarıyla eklendi: maili sekillestir
+INFO - 2024-12-17 13:20:01 --> Başarıyla eklendi: days.json dosyasi hemen guncellenmyior
+INFO - 2024-12-17 13:20:01 --> Başarıyla eklendi: ayin sonu gelldginde yeni aya gecsin hemen
+INFO - 2024-12-17 13:20:01 --> Görev grubu tamamlandı. Grup: 1
+INFO - 2024-12-17 13:20:01 --> Görev grubu işleniyor. Grup: 2, Görev sayısı: 10
+INFO - 2024-12-17 13:20:02 --> Başarıyla eklendi: Admin icin bugunun tarihi ac
+INFO - 2024-12-17 13:20:02 --> Başarıyla eklendi: serverda calndar saat duzeni duzelt
+INFO - 2024-12-17 13:20:02 --> Başarıyla eklendi: Bu ay ozelligi calismiyor
+INFO - 2024-12-17 13:20:02 --> Başarıyla eklendi: Onaylandi, Onaylanıyor, Rett edildi kontrolleri ekle(eğer hemen danışan randevu aldigi gibi mi onaylansın yoksa Onaylaniyor ve doktor tek tek kontrol edecek)
+INFO - 2024-12-17 13:20:02 --> Başarıyla eklendi: serverda index sayfasinda onay modali calismioyr
+INFO - 2024-12-17 13:20:02 --> Başarıyla eklendi: admin panelinde dieger kisinin adini sil
+INFO - 2024-12-17 13:20:03 --> Başarıyla eklendi: bolumleri dokotora gore ozellestir
+INFO - 2024-12-17 13:20:03 --> Başarıyla eklendi: Her admin girisi icin ip sakla
+INFO - 2024-12-17 13:20:03 --> Başarıyla eklendi: sifremi unuttum kismi
+INFO - 2024-12-17 13:20:03 --> Başarıyla eklendi: Alinan randevu hangi doktora ise ona gorunsun
+INFO - 2024-12-17 13:20:03 --> Görev grubu tamamlandı. Grup: 2
+INFO - 2024-12-17 13:20:03 --> Görev grubu işleniyor. Grup: 3, Görev sayısı: 10
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: Admin pahgeteki yazı turleri farklı
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: Yeni doktorlar ve duzetmeler
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: login kurallari duzelt
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: prfil page ayarla
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: Giris sayfası yap
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: Truce harfleri kontrol et
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: Calendar id db ekle ve goster
+INFO - 2024-12-17 13:20:04 --> Başarıyla eklendi: Kullanicin bir seyi değiştiğinde google calnderda degissin
+INFO - 2024-12-17 13:20:05 --> Başarıyla eklendi: isim soy isim icin sinir koy
+INFO - 2024-12-17 13:20:05 --> Başarıyla eklendi: Telefon numaraisni silerken parantez icindeki yazıları düzelt
+INFO - 2024-12-17 13:20:05 --> Görev grubu tamamlandı. Grup: 3
+INFO - 2024-12-17 13:20:05 --> Görev grubu işleniyor. Grup: 4, Görev sayısı: 10
+INFO - 2024-12-17 13:20:05 --> Başarıyla eklendi: Tatil günü değiştiğinde düzgün yap
+INFO - 2024-12-17 13:20:05 --> Başarıyla eklendi: Takvimin bugunun sonraki 30 günü göstermiyor
+INFO - 2024-12-17 13:20:05 --> Başarıyla eklendi: Takvimde iki kez tıklamamız lazım saat görünmesi icin
+INFO - 2024-12-17 13:20:05 --> Başarıyla eklendi: Gösterilen saatleri icin sirlama yap
+INFO - 2024-12-17 13:20:06 --> Başarıyla eklendi: Her kullanıcıya özel olan cookie düzgün calismiyor
+INFO - 2024-12-17 13:20:06 --> Başarıyla eklendi: Takvim icin sinir koy
+INFO - 2024-12-17 13:20:06 --> Başarıyla eklendi: Kullanicidaki inputlarda boşlukları kontrol et
+INFO - 2024-12-17 13:20:06 --> Başarıyla eklendi: Eger randevu turu icin ismi değişme yapacaksan valuelarda gaz önünde bulundur
+INFO - 2024-12-17 13:20:06 --> Başarıyla eklendi: Settings talbosunu ekle. Acilis saati kapanış saati, Lokasyonlar, Randevu alma mesajı, Doktorlarin Adilar, Yerin adi(mekan), randevu turu adları,
+INFO - 2024-12-17 13:20:07 --> Başarıyla eklendi: Eğer baslangic saati bucuktan baslayacaksa
+INFO - 2024-12-17 13:20:07 --> Görev grubu tamamlandı. Grup: 4
+INFO - 2024-12-17 13:20:07 --> Görev grubu işleniyor. Grup: 5, Görev sayısı: 1
+INFO - 2024-12-17 13:20:09 --> Başarıyla eklendi: Tekrar eden kodlar icin funktion ekle
+INFO - 2024-12-17 13:20:09 --> Görev grubu tamamlandı. Grup: 5
+INFO - 2024-12-17 13:20:09 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:20:09 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:20:09 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:20:11 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:20:11 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 8
+INFO - 2024-12-17 13:20:12 --> Başarıyla eklendi: bu ay bu yil bugun filterleri ekle
+INFO - 2024-12-17 13:20:12 --> Başarıyla eklendi: Gucelle yaptiginda oncekiinden farki var mi kontrol etsin
+INFO - 2024-12-17 13:20:12 --> Başarıyla eklendi: Durum search calismiyor
+INFO - 2024-12-17 13:20:12 --> Başarıyla eklendi: process insertte parca no da bosluk var onu sil
+INFO - 2024-12-17 13:20:13 --> Başarıyla eklendi: proccass insertte parca no yerinde siparis no olsacak
+INFO - 2024-12-17 13:20:14 --> Başarıyla eklendi: process fromda gonder butonu
+INFO - 2024-12-17 13:20:14 --> Başarıyla eklendi: add filed fonksinou calistiignda - ve + gizlencek
+INFO - 2024-12-17 13:20:14 --> Başarıyla eklendi: porcess insertte sablon adi yazilsin
+INFO - 2024-12-17 13:20:14 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:20:14 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:20:19 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:20:20 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:20:20 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:20:21 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:20:21 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 4
+INFO - 2024-12-17 13:20:21 --> Başarıyla eklendi: Sunumda tum kullanilan kutuphaneleri yaz grafiksel bir sekilde( hepsi ortada toplantip daha sonra en cok kullanilan veya baska bir konuyle bir kutuphane secilir ve digerleri silinir ve bir tane kalir )
+INFO - 2024-12-17 13:20:21 --> Başarıyla eklendi: Error handling yap
+INFO - 2024-12-17 13:20:21 --> Başarıyla eklendi: Projeye reload yap gereksiz hata gostergeeleri gitmesi icin
+INFO - 2024-12-17 13:20:21 --> Başarıyla eklendi: Log sistemi yap
+INFO - 2024-12-17 13:20:21 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:20:21 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:20:22 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:20:22 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:20:23 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:20:23 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 10
+INFO - 2024-12-17 13:20:24 --> Başarıyla eklendi: birden fazla kullanici icin ayarla
+INFO - 2024-12-17 13:20:24 --> Başarıyla eklendi: bugunun danislanlar kisminda saat yaninda kac saat kaldigni yazilsin 5 saat sonra mesela
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: Silme islemi ekle
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: Randevuların Listesi aciklamasi kontroll et
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: Login cookie calismiyor
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: Datarable turkce degil
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: Randevu olusturmuyoe Bu alana içerik eklenecektir
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: Listte datatable card disina cikmis
+INFO - 2024-12-17 13:20:25 --> Başarıyla eklendi: turkish.json 500 hatasi veriyor
+INFO - 2024-12-17 13:20:26 --> Başarıyla eklendi: google-auth sayfasi dulzet
+INFO - 2024-12-17 13:20:26 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:20:26 --> Görev grubu işleniyor. Grup: 1, Görev sayısı: 2
+INFO - 2024-12-17 13:20:27 --> Başarıyla eklendi: Routes .php de linkleri sirala
+INFO - 2024-12-17 13:20:27 --> Başarıyla eklendi: Google meet integre et
+INFO - 2024-12-17 13:20:27 --> Görev grubu tamamlandı. Grup: 1
+INFO - 2024-12-17 13:20:27 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:20:28 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:20:28 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:20:29 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:20:29 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 10
+INFO - 2024-12-17 13:20:30 --> Başarıyla eklendi: ResultCategory View sayfalari duzenle result tablosuna gore yapilmis yanis tikla
+INFO - 2024-12-17 13:20:30 --> Başarıyla eklendi: BuldDataQuery ve BulkDataQueryAssignment ViewModellerine bakilacak diger tablolarla baglantilariyla iligili
+INFO - 2024-12-17 13:20:31 --> Başarıyla eklendi: ErrorTranslatorda color sil
+INFO - 2024-12-17 13:20:31 --> Başarıyla eklendi: Json inputlar ona gore yap craete ve edit
+INFO - 2024-12-17 13:20:31 --> Başarıyla eklendi: [GitHub - plotly/dash-pivottable: react-pivottable in Dash](https://github.com/plotly/dash-pivottable) bu kodu uyugla
+INFO - 2024-12-17 13:20:31 --> Başarıyla eklendi: Program list sayfalari
+INFO - 2024-12-17 13:20:31 --> Başarıyla eklendi: 4- Diğer modellerin Create ve Edit sayfa tasarımları Project Create ve Edit sayfalarının tasarımı gibi olacak.
+INFO - 2024-12-17 13:20:31 --> Başarıyla eklendi: Controllerlarin son 3 metodu Indicatora gore clean yap 
+INFO - 2024-12-17 13:20:32 --> Başarıyla eklendi: Haritalara bak kucuk
+INFO - 2024-12-17 13:20:32 --> Başarıyla eklendi: Yorumlari kontorl et
+INFO - 2024-12-17 13:20:32 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:20:32 --> Görev grubu işleniyor. Grup: 1, Görev sayısı: 10
+INFO - 2024-12-17 13:20:33 --> Başarıyla eklendi: Sayfalari tek tek kontrol et dogru veri iceriyor mu create ve edit te
+ERROR - 2024-12-17 13:20:33 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:20:33 --> Başarıyla eklendi: 3- Project Create ve Edit sayfalarında kullanılan Select2 ve Tempus Dominus DatePicker bileşenlerinin nasil kullanildigini arastir ve gerekli yerlerde yerlestir
+INFO - 2024-12-17 13:20:33 --> Başarıyla eklendi: 5- Diğer modellerden View sayfası olanların tasarımları Project View sayfasının tasarımı gibi olacak.
+INFO - 2024-12-17 13:20:33 --> Başarıyla eklendi: 2- AssignViewBagPropertyOptionsAsync fonksionu baska yerlerde gerekli mi
+INFO - 2024-12-17 13:20:34 --> Başarıyla eklendi: Tum view lara gir ve yorum, alanlarin dogrulaugu kontrol et
+INFO - 2024-12-17 13:20:34 --> Başarıyla eklendi: 2. Metric ve Indicator modülleri oluşturulacak. Herhangi bir projeye bağlı olmayan Metric ve Indicator kayıtları menü üzerindenden Veri Yönetimi bölümündeki linklere tıklandığında erişilebilir durumda olacak. Herhangi bir projeye bağlı olmayan Metric ve Indicator kayıtlarında ProjectId 0 ya da null olabilir.
+INFO - 2024-12-17 13:20:34 --> Başarıyla eklendi: 6- Her validator sınıfı içinde aynı işlemi yapan HandleDbException, HandleGenericException, AddOrUpdateModelError, vb. metotlar var. Bu metotları jenerik hale getirmemiz gerekiyor.
+INFO - 2024-12-17 13:20:34 --> Başarıyla eklendi: DRY, SOLID ve ACID prensiplerinin ne olduğu hakkında bilgi al
+INFO - 2024-12-17 13:20:35 --> Başarıyla eklendi: jenerik ne anlama geldigni arastir
+INFO - 2024-12-17 13:20:35 --> Görev grubu tamamlandı. Grup: 1
+INFO - 2024-12-17 13:20:35 --> Görev grubu işleniyor. Grup: 2, Görev sayısı: 10
+INFO - 2024-12-17 13:20:36 --> Başarıyla eklendi: 7- Check if necessity of return statements in controllers
+INFO - 2024-12-17 13:20:36 --> Başarıyla eklendi: WepApplication ile Api controlller lari hespi oldugun kontrol et
+INFO - 2024-12-17 13:20:36 --> Başarıyla eklendi: 1- make all contollers asynchronous
+INFO - 2024-12-17 13:20:36 --> Başarıyla eklendi: 8- LookupDictionaryController ve ProjectController Diğer controller sınıflarının da benzer şekilde güncelle
+INFO - 2024-12-17 13:20:37 --> Başarıyla eklendi: backend te Poject controllerina kullancinin erisim etkisni kontrol et
+INFO - 2024-12-17 13:20:37 --> Başarıyla eklendi: Bazi sayfalarn yorum ve checkboxlar eski halde
+INFO - 2024-12-17 13:20:37 --> Başarıyla eklendi: Project icin api yap
+INFO - 2024-12-17 13:20:38 --> Başarıyla eklendi: Metric ve gostergelerde Ekle butonu yerlestir
+INFO - 2024-12-17 13:20:38 --> Başarıyla eklendi: Containe Page -> containterPage oalcak
+INFO - 2024-12-17 13:20:40 --> Başarıyla eklendi: Project id document bodye ekle
+INFO - 2024-12-17 13:20:40 --> Görev grubu tamamlandı. Grup: 2
+INFO - 2024-12-17 13:20:40 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:20:45 --> Görev grubu işleniyor. Grup: 3, Görev sayısı: 10
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Project icin js yaz
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Intialize ne anlama geliyor arastir
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Projcet icin Validatior yap
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Project icin Controller
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Project icin view lar yap
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Toggle Rengi mavi yap acik mavi
+INFO - 2024-12-17 13:20:46 --> Başarıyla eklendi: Islemlerin sag tarafindanki boslugu sil
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: Mta mocups ları son halı konytrol et
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: Enabled ve Locked en uste al
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: search text templte e kilitli ve aktif ekle lookup icin
+INFO - 2024-12-17 13:20:47 --> Görev grubu tamamlandı. Grup: 3
+INFO - 2024-12-17 13:20:47 --> Görev grubu işleniyor. Grup: 4, Görev sayısı: 10
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: 2- edit sayfasindaki checkboxlar toggle olacak ve en altta indir
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: Settıngs sayfası gozden gecır
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: 3- create sayfasindaki checkboxlar toggle yap ve en altta indir ve hatayi duzelt null hatasi
+INFO - 2024-12-17 13:20:47 --> Başarıyla eklendi: 4-Genel kontrol yap ve push la
+INFO - 2024-12-17 13:20:48 --> Başarıyla eklendi: Modify Validators
+INFO - 2024-12-17 13:20:48 --> Başarıyla eklendi: 1- List sayfalari tamamen bittir
+INFO - 2024-12-17 13:20:48 --> Başarıyla eklendi: On Tanimlama listesinde silme islemi dogru calismiyor
+INFO - 2024-12-17 13:20:49 --> Başarıyla eklendi: Bildirim iconu gorunmuyor
+INFO - 2024-12-17 13:20:49 --> Başarıyla eklendi: Create Controllers
+INFO - 2024-12-17 13:20:56 --> Başarıyla eklendi: BulkDataTemplateTable validatorda turkcelestir
+INFO - 2024-12-17 13:20:56 --> Görev grubu tamamlandı. Grup: 4
+INFO - 2024-12-17 13:20:56 --> Görev grubu işleniyor. Grup: 5, Görev sayısı: 7
+INFO - 2024-12-17 13:20:57 --> Başarıyla eklendi: Sayi gerektiren bir alan varsa ve sayi degilse onun kontrolu dogru yap
+INFO - 2024-12-17 13:20:57 --> Başarıyla eklendi: Her alan altinda hata mesaji goster
+INFO - 2024-12-17 13:20:57 --> Başarıyla eklendi: Buttonlari hover efecti ekle
+INFO - 2024-12-17 13:20:57 --> Başarıyla eklendi: bu kisimi duzlet validation
+INFO - 2024-12-17 13:20:57 --> Başarıyla eklendi: Diger controllerlar duzlet ve validation kodlari
+INFO - 2024-12-17 13:20:57 --> Başarıyla eklendi: Edit ve Create e ozel kodlari ekle
+INFO - 2024-12-17 13:20:58 --> Başarıyla eklendi: Toaster goster listte ozellikle
+INFO - 2024-12-17 13:20:58 --> Görev grubu tamamlandı. Grup: 5
+INFO - 2024-12-17 13:20:58 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:20:58 --> Başarılı bir şekilde Notion'a listeler gönderildi.
+INFO - 2024-12-17 13:21:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-12-17 13:21:18 --> Basarili bir sekilde Listeler alindi
+WARNING - 2024-12-17 13:21:19 --> Basarili bir sekilde Notiondan Listeler alindi
+WARNING - 2024-12-17 13:21:19 --> [DEPRECATED] Invalid characters passed for attempted conversion, these have been ignored in APPPATH\Controllers\TickTickController.php on line 645.
+ 1 APPPATH\Controllers\TickTickController.php(645): hexdec('ul')
+ 2 APPPATH\Controllers\TickTickController.php(662): App\Controllers\TickTickController->hexToRgb('default')
+ 3 APPPATH\Controllers\TickTickController.php(372): App\Controllers\TickTickController->getClosestColorName('default')
+ 4 APPPATH\Controllers\TickTickController.php(59): App\Controllers\TickTickController->setTickTickListsToNotion([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TickTickController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TickTickController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\faruk\\Documents\\github\\ticktick-notion-php\\public\\index.php')
+INFO - 2024-12-17 13:21:20 --> addTasksOfListsToNotion işlemine başlandı.
+INFO - 2024-12-17 13:21:20 --> Liste işleniyor: 💲Shopping
+INFO - 2024-12-17 13:21:22 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:22 --> Fetching active tasks for project: 6166b5d051359104ed051f4b
+WARNING - 2024-12-17 13:21:24 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:24 --> Liste işleniyor: 🎲To Do1
+INFO - 2024-12-17 13:21:26 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:26 --> Fetching active tasks for project: 6166b6aea58f1104ed052345
+WARNING - 2024-12-17 13:21:28 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:28 --> Liste işleniyor: 🎯My 2023 Goals‎
+INFO - 2024-12-17 13:21:29 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:29 --> Fetching active tasks for project: 63c11fc08f08aeaeae032d59
+WARNING - 2024-12-17 13:21:30 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:30 --> Liste işleniyor: 👨🏽‍💻Code To-Do
+INFO - 2024-12-17 13:21:32 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:32 --> Fetching active tasks for project: 64e25d84b8985101dcff9f3e
+WARNING - 2024-12-17 13:21:34 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:34 --> Liste işleniyor: Processman
+INFO - 2024-12-17 13:21:35 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:35 --> Fetching active tasks for project: 65f94b5290e9910cb925f79f
+WARNING - 2024-12-17 13:21:36 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:36 --> Liste işleniyor: 💯Graduation Project
+INFO - 2024-12-17 13:21:37 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:37 --> Fetching active tasks for project: 66222864569891266e45ca3d
+WARNING - 2024-12-17 13:21:38 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:38 --> Liste işleniyor: 🕑ByAppointment
+INFO - 2024-12-17 13:21:39 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:39 --> Fetching active tasks for project: 66faf346d2255129947d9a6d
+WARNING - 2024-12-17 13:21:40 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:40 --> Liste işleniyor: Work - Kosgeb
+INFO - 2024-12-17 13:21:43 --> Access Token: 013ae5a5-8915-41b1-9c23-d3775e6afad0
+INFO - 2024-12-17 13:21:43 --> Fetching active tasks for project: 67163cadebbd740000000047
+WARNING - 2024-12-17 13:21:45 --> Basarili bir sekilde Listelerin tasklari alindi
+INFO - 2024-12-17 13:21:45 --> Görev grubu işleniyor. Grup: 0, Görev sayısı: 1
+ERROR - 2024-12-17 13:21:46 --> Hata: 1. Tüm WebApplication/Controller sınıflarını LookupDictionary, Metric ve Indicator daki gibi yapıp ilişkileri tahmin ederek ViewModel sınıfları ve Options assignment metodları oluşturulacak. - Client error: `POST https://api.notion.com/v1/pages` resulted in a `400 Bad Request` response:
+{"object":"error","status":400,"code":"validation_error","message":"body failed validation: body.children[0].paragraph.r (truncated...)
+
+INFO - 2024-12-17 13:21:46 --> Görev grubu tamamlandı. Grup: 0
+INFO - 2024-12-17 13:21:46 --> Maksimum çalışma süresine ulaşıldı. 5 saniye bekleniyor...
+INFO - 2024-12-17 13:21:51 --> addTasksOfListsToNotion işlemi tamamlandı.
+WARNING - 2024-12-17 13:21:51 --> Başarılı bir şekilde Notion'a listeler gönderildi.
