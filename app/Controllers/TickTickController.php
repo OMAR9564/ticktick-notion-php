@@ -9,6 +9,7 @@ use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use Exception;
+use function PHPUnit\Framework\equalTo;
 
 class TickTickController extends BaseController
 {
@@ -33,6 +34,8 @@ class TickTickController extends BaseController
         'yellow'  => '#FFFF00',
     ];
 
+    private $statusFile = WRITEPATH . 'sync_status.json';
+
     public function __construct()
     {
         $this->loginUrl = 'https://ticktick.com/api/v2/user/signon?wc=true&remember=true';
@@ -44,25 +47,40 @@ class TickTickController extends BaseController
         $this->password = getenv('TICKTICK_PASSWORD');
     }
 
+
+
+    public function checkStatus(): bool
+    {
+        if (!file_exists($this->statusFile)) {
+            file_put_contents($this->statusFile, json_encode(['status' => 0]));
+        }
+
+        $status = json_decode(file_get_contents($this->statusFile), true);
+        return $status["status"] === 0 ? false : true;
+    }
+
     // Ana sayfa: Listelerin çekildiği ve seçimin yapıldığı method
     public function index()
     {
-        $accessToken = session()->get('ticktick_access_token');
+        $status = $this->checkStatus();
+        if ($status) {
+            $accessToken = session()->get('ticktick_access_token');
 
-        if (!$accessToken) {
-            return redirect()->to('/ticktick/authenticate');
-        }
+            if (!$accessToken) {
+                return redirect()->to('/ticktick/authenticate');
+            }
 
-        try {
-            $lists = $this->getTickTickLists($accessToken);
-            
-            print_r($this->setTickTickListsToNotion($lists));
-            exit;
+            try {
+                $lists = $this->getTickTickLists($accessToken);
+                
+                print_r($this->setTickTickListsToNotion($lists));
+                exit;
 
-            return view('ticktick_lists', ['lists' => $lists]);
-        } catch (RequestException $e) {
-            return view('error', ['message' => 'TickTick Listeleri alınamadı: ' . $e->getMessage()]);
-        }
+                return view('ticktick_lists', ['lists' => $lists]);
+            } catch (RequestException $e) {
+                return view('error', ['message' => 'TickTick Listeleri alınamadı: ' . $e->getMessage()]);
+            }
+        }   
     }
 
     // Seçilen proje verilerini getirir
@@ -285,8 +303,6 @@ class TickTickController extends BaseController
         return json_decode($jsonData, true);
     }
 
-    
-
     public function syncTasks()
     {
         $mappings = $this->loadMappings();
@@ -320,12 +336,13 @@ class TickTickController extends BaseController
             $this->saveLocalData($notionDatabaseId, $localData);
         }
     }
+
     private function saveLocalData($databaseId, $data)
     {
         $filePath = WRITEPATH . "data/$databaseId.json";
         file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
     }
-    
+
     private function loadLocalData($databaseId)
     {
         $filePath = WRITEPATH . "data/$databaseId.json";
@@ -338,106 +355,110 @@ class TickTickController extends BaseController
     }
 
     private function setTickTickListsToNotion($lists) {
-        $result = ["success" => [], "errors" => []];
-    
-        if ($lists) {
-            $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2";
-    
-            try {
-                $client = new Client();
-                $response = $client->request('GET', $url, [
-                    'headers' => [
-                        'Authorization' => "Bearer $this->notionToken",
-                        'Content-Type' => 'application/json',
-                        'Notion-Version' => '2022-06-28'
-                    ]
-                ]);
-                log_message('warning', "Basarili bir sekilde Notiondan Listeler alindi");
+        $status = $this->checkStatus();
+        if ($status) {
+        
+            $result = ["success" => [], "errors" => []];
+        
+            if ($lists) {
+                $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2";
+        
+                try {
+                    $client = new Client();
+                    $response = $client->request('GET', $url, [
+                        'headers' => [
+                            'Authorization' => "Bearer $this->notionToken",
+                            'Content-Type' => 'application/json',
+                            'Notion-Version' => '2022-06-28'
+                        ]
+                    ]);
+                    log_message('warning', "Basarili bir sekilde Notiondan Listeler alindi");
 
-                $httpCode = $response->getStatusCode();
-                if ($httpCode >= 200 && $httpCode < 300) {
-                    $responseData = json_decode($response->getBody(), true);
-                    $existingOptions = $responseData['properties']['Category']['select']['options'] ?? [];
-                } else {
-                    throw new Exception("HTTP Hatası: $httpCode, Mevcut seçenekler alınamadı.");
-                }
-    
-                // Mevcut seçenekleri sakla (referanslar için dizinleme)
-                $existingOptionsMap = array_column($existingOptions, null, 'description');
-                $newOptions = [];
-                // Seçenekleri güncelleme işlemi
-                foreach ($lists as $list) {
-                    $notionCategoryId = $list["id"];
-                    $notionCategoryText = $list["name"];
-                    $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "default");
+                    $httpCode = $response->getStatusCode();
+                    if ($httpCode >= 200 && $httpCode < 300) {
+                        $responseData = json_decode($response->getBody(), true);
+                        $existingOptions = $responseData['properties']['Category']['select']['options'] ?? [];
+                    } else {
+                        throw new Exception("HTTP Hatası: $httpCode, Mevcut seçenekler alınamadı.");
+                    }
+        
+                    // Mevcut seçenekleri sakla (referanslar için dizinleme)
+                    $existingOptionsMap = array_column($existingOptions, null, 'description');
+                    $newOptions = [];
+                    // Seçenekleri güncelleme işlemi
+                    foreach ($lists as $list) {
+                        $notionCategoryId = $list["id"];
+                        $notionCategoryText = $list["name"];
+                        $notionCategoryColor = $this->getClosestColorName($list["color"] ?? "default");
 
-                    $found = false;
+                        $found = false;
 
-                    // Mevcut seçeneklerde arayın
-                    foreach ($existingOptions as $key => $existingOption) {
-                        if ($existingOption['description'] === $notionCategoryId) {
-                            // Aynı ID ile mevcut bir seçenek varsa, güncelle
-                            unset($existingOptions[$key]['id']);
-                            $existingOptions[$key]['name'] = $notionCategoryText;
-                            $found = true;
-                            break;
+                        // Mevcut seçeneklerde arayın
+                        foreach ($existingOptions as $key => $existingOption) {
+                            if ($existingOption['description'] === $notionCategoryId) {
+                                // Aynı ID ile mevcut bir seçenek varsa, güncelle
+                                unset($existingOptions[$key]['id']);
+                                $existingOptions[$key]['name'] = $notionCategoryText;
+                                $found = true;
+                                break;
+                            }
+                        }
+
+                        if (!$found) {
+                            // Yeni bir seçenek oluştur
+                            $newOptions[] = [
+                                "name" => $notionCategoryText,
+                                "color" => $notionCategoryColor,
+                                "description" => $notionCategoryId,
+                            ];
                         }
                     }
 
-                    if (!$found) {
-                        // Yeni bir seçenek oluştur
-                        $newOptions[] = [
-                            "name" => $notionCategoryText,
-                            "color" => $notionCategoryColor,
-                            "description" => $notionCategoryId,
-                        ];
-                    }
-                }
-
-                
-                $allOptions = array_merge($existingOptions, $newOptions);
-                
-                // Güncellenmiş seçeneklerle PATCH isteği gönderin
-                $data = [
-                    "properties" => [
-                        "Category" => [
-                            "select" => [
-                                "options" => $allOptions,
+                    
+                    $allOptions = array_merge($existingOptions, $newOptions);
+                    
+                    // Güncellenmiş seçeneklerle PATCH isteği gönderin
+                    $data = [
+                        "properties" => [
+                            "Category" => [
+                                "select" => [
+                                    "options" => $allOptions,
+                                ]
                             ]
                         ]
-                    ]
-                ];
+                    ];
 
-                $patchResponse = $client->request('PATCH', $url, [
-                    'headers' => [
-                        'Authorization' => "Bearer $this->notionToken",
-                        'Content-Type' => 'application/json',
-                        'Notion-Version' => '2022-06-28'
-                    ],
-                    'json' => $data
-                ]);
+                    $patchResponse = $client->request('PATCH', $url, [
+                        'headers' => [
+                            'Authorization' => "Bearer $this->notionToken",
+                            'Content-Type' => 'application/json',
+                            'Notion-Version' => '2022-06-28'
+                        ],
+                        'json' => $data
+                    ]);
 
-                $resultAddTasksToNotion = $this->addTasksOfListsToNotion($lists);
-                
-                log_message('warning', "Başarılı bir şekilde Notion'a listeler gönderildi.");
+                    $resultAddTasksToNotion = $this->addTasksOfListsToNotion($lists);
+                    
+                    log_message('warning', "Başarılı bir şekilde Notion'a listeler gönderildi.");
 
-                $patchHttpCode = $patchResponse->getStatusCode();
-                if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
-                    $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "task_messages" => $resultAddTasksToNotion['success']];
-                    // $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "Task"];
-                } else {
-                    throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
+                    $patchHttpCode = $patchResponse->getStatusCode();
+                    if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
+                        $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "task_messages" => $resultAddTasksToNotion['success']];
+                        // $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "Task"];
+                    } else {
+                        throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
+                    }
+                } catch (Exception $e) {
+                    $result["errors"][] = ["error" => $e->getMessage()];
                 }
-            } catch (Exception $e) {
-                $result["errors"][] = ["error" => $e->getMessage()];
+            } else {
+                $result["errors"][] = ["message" => "Listeler boş veya geçersiz."];
             }
-        } else {
-            $result["errors"][] = ["message" => "Listeler boş veya geçersiz."];
-        }
-    
-        return $result;
+        
+            return $result;
+        }   
     }
-    
+
     private function addTasksOfListsToNotion(array $lists): array
     {
         $result = ["success" => [], "errors" => []];
@@ -615,8 +636,6 @@ class TickTickController extends BaseController
         }
     }
 
-
-
     private function getExistingTasksFromNotion($categoryName)
     {
         $client = new Client();
@@ -679,11 +698,6 @@ class TickTickController extends BaseController
         return $existingTasks;
     }
 
-
-
-    /**
-     * Hex kodunu R,G,B olarak döndürür.
-     */
     private function hexToRgb($hex) {
         $hex = str_replace('#', '', $hex);
         if (strlen($hex) === 3) {
@@ -696,17 +710,11 @@ class TickTickController extends BaseController
     
         return [$r, $g, $b];
     }
-    
-    /**
-     * İki renk (R,G,B) formatında arası Öklid mesafesi hesaplanır.
-     */
+
     private function colorDistance($rgb1, $rgb2) {
         return sqrt(pow($rgb1[0] - $rgb2[0], 2) + pow($rgb1[1] - $rgb2[1], 2) + pow($rgb1[2] - $rgb2[2], 2));
     }
-    
-    /**
-     * Verilen input hex rengine en yakın isimlendirilmiş rengi bulur.
-     */
+
     private function getClosestColorName($inputHex) {
         if($inputHex){
             $inputRgb = $this->hexToRgb($inputHex);
