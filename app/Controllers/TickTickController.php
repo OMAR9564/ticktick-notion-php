@@ -36,6 +36,7 @@ class TickTickController extends BaseController
 
     private $statusFile = WRITEPATH . 'sync_status.json';
     private $accessTokenFile = WRITEPATH . 'access_token.json';
+    private $ticktickV2AccessTokenFile = WRITEPATH . 'ticktick_v2_access_token.json';
 
     public function __construct()
     {
@@ -49,6 +50,10 @@ class TickTickController extends BaseController
 
         if (!file_exists($this->accessTokenFile)) {
             file_put_contents($this->accessTokenFile, json_encode(['access_token' => 0]));
+        }
+
+        if (!file_exists($this->ticktickV2AccessTokenFile)) {
+            file_put_contents($this->ticktickV2AccessTokenFile, json_encode(['ticktick_v2_access_cookie' => 0]));
         }
     }
 
@@ -204,13 +209,15 @@ class TickTickController extends BaseController
             // API çağrıları öncesi log ekle
             log_message('info', 'Fetching active tasks for project: ' . $listId);
 
+            $ticktickV2AccessCookie = json_decode(file_get_contents($this->ticktickV2AccessTokenFile), true)["ticktick_v2_access_cookie"];
+
             $activeResponse = $client->get("https://api.ticktick.com/api/v2/project/$listId/tasks", [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Referer' => 'https://ticktick.com/',
                     'Accept' => 'application/json',
                     'Origin' => 'https://ticktick.com',
-                    'Cookie' => session()->get("ticktick_v2_access_cookie"),
+                    'Cookie' => $ticktickV2AccessCookie,
                 ],
             ]);
 
@@ -224,7 +231,7 @@ class TickTickController extends BaseController
                     'Referer' => 'https://ticktick.com/',
                     'Accept' => 'application/json',
                     'Origin' => 'https://ticktick.com',
-                    'Cookie' => session()->get("ticktick_v2_access_cookie"),
+                    'Cookie' => $ticktickV2AccessCookie,
                 ],
             ]);
             unset($client);
@@ -288,6 +295,8 @@ class TickTickController extends BaseController
                 }
             }
             session()->set('ticktick_v2_access_cookie', $cookieString);
+
+            file_put_contents($this->ticktickV2AccessTokenFile, json_encode(['ticktick_v2_access_cookie' => $cookieString]));
 
             if (!empty($body['token'])) {
                 session()->set('ticktick_v2_access_token', $body['token']);
