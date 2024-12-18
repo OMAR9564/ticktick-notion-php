@@ -505,7 +505,7 @@ class TickTickController extends BaseController
                 log_message('info', "Liste işleniyor: {$list['name']}");
                 
                 // Mevcut Notion görevlerini al
-                $existingTasks = $this->getExistingTasksFromNotion($list['name']);
+                $existingTasks = $this->getExistingTasksFromNotion("🎲To Do");
 
                 // Bugünün görevlerini belirle
                 $listTasks = $this->getListTasks($list["id"]);
@@ -518,6 +518,9 @@ class TickTickController extends BaseController
                 $todayTasks = array_filter($allTasks, function ($task) use ($today) {
                     return date('Y-m-d', strtotime($task['modifiedTime'])) === $today;
                 });
+
+                print_r($existingTasks);
+                exit;
 
                 // Notion'daki mevcut görevleri sil
                 foreach ($todayTasks as $task) {
