@@ -16,6 +16,7 @@ $routes->get('ticktick/login', to: 'TickTickController::login');
 $routes->get('/', 'Home::index'); // Ana sayfa (Listelerin görüntülendiği sayfa)
 $routes->post('/login/validate', 'Home::loginValidate'); // For login validation
 $routes->post('/sync', 'TickTickController::index');            // Placeholder for sync endpoint
+$routes->get('/sync', 'TickTickController::index');            // Placeholder for sync endpoint
 
 $routes->post('/sync/update-status', 'Home::updateStatus'); // To update sync status
 $routes->get('/sync/check-status', 'TickTickController::checkStatus');   // To check sync status

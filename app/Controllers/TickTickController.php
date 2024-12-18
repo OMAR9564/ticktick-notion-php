@@ -35,6 +35,7 @@ class TickTickController extends BaseController
     ];
 
     private $statusFile = WRITEPATH . 'sync_status.json';
+    private $accessTokenFile = WRITEPATH . 'access_token.json';
 
     public function __construct()
     {
@@ -45,29 +46,37 @@ class TickTickController extends BaseController
         $this->notionToken = getenv('NOTION_API_TOKEN');
         $this->email = getenv('TICKTICK_EMAIL');
         $this->password = getenv('TICKTICK_PASSWORD');
+
+        if (!file_exists($this->accessTokenFile)) {
+            file_put_contents($this->accessTokenFile, json_encode(['access_token' => 0]));
+        }
     }
 
 
 
-    public function checkStatus(): bool
+    public function checkStatus(): string
     {
         if (!file_exists($this->statusFile)) {
             file_put_contents($this->statusFile, json_encode(['status' => 0]));
         }
 
         $status = json_decode(file_get_contents($this->statusFile), true);
-        return $status["status"] === 0 ? false : true;
+        
+        return $status["status"] === 0 ? "false" : "true";
     }
 
     // Ana sayfa: Listelerin çekildiği ve seçimin yapıldığı method
     public function index()
     {
         $status = $this->checkStatus();
-        if ($status) {
+        if ($status === "true") {
             $accessToken = session()->get('ticktick_access_token');
 
             if (!$accessToken) {
-                return redirect()->to('/ticktick/authenticate');
+                $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
+                if (!$accessToken) {
+                    return redirect()->to('/ticktick/authenticate');
+                }
             }
 
             try {
@@ -89,7 +98,10 @@ class TickTickController extends BaseController
         $accessToken = session()->get('ticktick_access_token');
 
         if (!$accessToken) {
-            return redirect()->to('/ticktick/authenticate');
+            $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
+            if (!$accessToken) {
+                return redirect()->to('/ticktick/authenticate');
+            }
         }
 
         try {
@@ -128,6 +140,8 @@ class TickTickController extends BaseController
         try {
             $accessToken = $this->getAccessToken($code);
             session()->set('ticktick_access_token', $accessToken);
+
+            file_put_contents($this->accessTokenFile, json_encode(['access_token' => $accessToken]));
 
             return redirect()->to('/ticktick');
         } catch (RequestException $e) {
@@ -178,8 +192,10 @@ class TickTickController extends BaseController
         log_message('info', 'Access Token: ' . $accessToken); // Token'ı logla
 
         if (!$accessToken) {
-            log_message('error', 'No access token found');
-            return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
+            $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
+            if (!$accessToken) {
+                return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
+            }
         }
 
         try {
@@ -309,7 +325,10 @@ class TickTickController extends BaseController
         $accessToken = session()->get('ticktick_access_token');
 
         if (!$accessToken) {
-            throw new \Exception('TickTick erişim tokeni bulunamadı.');
+            $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
+            if (!$accessToken) {
+                throw new \Exception('TickTick erişim tokeni bulunamadı.');
+            }
         }
 
         foreach ($mappings as $notionDatabaseId => $ticktickListId) {
@@ -356,7 +375,7 @@ class TickTickController extends BaseController
 
     private function setTickTickListsToNotion($lists) {
         $status = $this->checkStatus();
-        if ($status) {
+        if ($status === "true") {
         
             $result = ["success" => [], "errors" => []];
         

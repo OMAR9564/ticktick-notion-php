@@ -77,9 +77,6 @@ class Home extends BaseController
         $input = $this->request->getJSON(true);
         $status = $input['status'] ?? null;
 
-        print_r($this->statusFile);
-        exit;
-
         if ($status === null || !in_array($status, [0, 1])) {
             return $this->response->setJSON(['success' => false, 'message' => 'Invalid status'])->setStatusCode(400);
         }
