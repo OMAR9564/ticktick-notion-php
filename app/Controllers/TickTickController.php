@@ -9,7 +9,6 @@ use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use Exception;
-use function PHPUnit\Framework\equalTo;
 
 class TickTickController extends BaseController
 {
@@ -20,11 +19,12 @@ class TickTickController extends BaseController
     private $loginUrl;
     private $email;
     private $password;
+    private $notionDatabasedId;
 
     private $namedColors = [
         'blue'    => '#0000FF',
         'brown'   => '#A52A2A',
-        'default' => '#FFFFFF', // Burada default'u beyaz kabul ettim, isterseniz değiştirin
+        'default' => '#FFFFFF',
         'gray'    => '#808080',
         'green'   => '#008000',
         'orange'  => '#FFA500',
@@ -35,6 +35,18 @@ class TickTickController extends BaseController
     ];
 
     private $statusFile = WRITEPATH . 'sync_status.json';
+
+    /*
+        My reason for using accessTokenFile and ticktickV2AccessTokenFile is 
+        that it works without any issues on localhost because authentication is 
+        done through the interface.
+        However, for it to run continuously in the background on hosting, 
+        I need to use a cron job.
+        For this reason, I decided to store the authentication data in JSON after 
+        first doing the authentication through the interface, since there won't be 
+        a session.
+        The reason for keeping them in separate files is that it was optional.
+    */
     private $accessTokenFile = WRITEPATH . 'access_token.json';
     private $ticktickV2AccessTokenFile = WRITEPATH . 'ticktick_v2_access_token.json';
 
@@ -47,6 +59,7 @@ class TickTickController extends BaseController
         $this->notionToken = getenv('NOTION_API_TOKEN');
         $this->email = getenv('TICKTICK_EMAIL');
         $this->password = getenv('TICKTICK_PASSWORD');
+        $this->notionDatabasedId = getenv('NOTION_DATABASE_ID');
 
         if (!file_exists($this->accessTokenFile)) {
             file_put_contents($this->accessTokenFile, json_encode(['access_token' => 0]));
@@ -57,8 +70,19 @@ class TickTickController extends BaseController
         }
     }
 
+    private function getSavedAccessToken()
+    {
+        $accessToken = session()->get('ticktick_access_token');
 
+        if (!$accessToken) {
+            $accessTokenData = @json_decode(file_get_contents($this->accessTokenFile), true);
+            $accessToken = $accessTokenData['access_token'] ?? null;
+        }
 
+        return $accessToken;
+    }
+
+    //It will perform a status check for cron jobs and sync accordingly
     public function checkStatus(): string
     {
         if (!file_exists($this->statusFile)) {
@@ -70,91 +94,74 @@ class TickTickController extends BaseController
         return $status["status"] === 0 ? "false" : "true";
     }
 
-    // Ana sayfa: Listelerin çekildiği ve seçimin yapıldığı method
-    public function index()
+    public function index(): \CodeIgniter\HTTP\Response
     {
-        $status = $this->checkStatus();
-        if ($status === "true") {
-            $accessToken = session()->get('ticktick_access_token');
-
-            if (!$accessToken) {
-                $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
-                if (!$accessToken) {
-                    return redirect()->to('/ticktick/authenticate');
-                }
-            }
-
-            try {
-                $lists = $this->getTickTickLists($accessToken);
-                
-                print_r($this->setTickTickListsToNotion($lists));
-                exit;
-
-                return view('ticktick_lists', ['lists' => $lists]);
-            } catch (RequestException $e) {
-                return view('error', ['message' => 'TickTick Listeleri alınamadı: ' . $e->getMessage()]);
-            }
-        }   
-    }
-
-    // Seçilen proje verilerini getirir
-    public function showProjectData($projectId)
-    {
-        $accessToken = session()->get('ticktick_access_token');
-
-        if (!$accessToken) {
-            $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
-            if (!$accessToken) {
-                return redirect()->to('/ticktick/authenticate');
-            }
-        }
-
         try {
-            $projectData = $this->getProjectData($accessToken, $projectId);
+            // Servis durumunu kontrol et
+            if ($this->checkStatus() !== "true") {
+                throw new Exception("Servis şu anda aktif değil");
+            }
 
-            // JSON formatında ekrana yazdırılır
-            return $this->response
-                ->setContentType('application/json')
-                ->setJSON($projectData);
+            // Access token'ı al ve kontrol et
+            $accessToken = $this->getSavedAccessToken();
+            if (empty($accessToken)) {
+                return $this->response->setStatusCode(401)
+                    ->setJSON([
+                        'status' => 'error',
+                        'message' => 'Oturum süresi dolmuş. Lütfen tekrar giriş yapın.'
+                    ]);
+            }
+
+            // TickTick listelerini getir
+            $lists = $this->getTickTickLists($accessToken);
+            if (empty($lists)) {
+                throw new Exception("TickTick listeleri alınamadı");
+            }
+
+            // Başarılı sonucu oluştur ve logla
+            $result = [
+                'status' => 'success',
+                'message' => 'Senkronizasyon başarıyla tamamlandı',
+                'data' => [
+                    'list_message' => $this->setTickTickListsToNotion($lists)['success'],
+                    'task_messages' => $this->addTasksOfListsToNotion($lists)['success']
+                ]
+            ];
+
+            log_message('info', 'TickTick senkronizasyonu başarılı', [
+                'list_count' => count($lists),
+                'sync_result' => $result
+            ]);
+
+            return $this->response->setJSON($result);
+
         } catch (RequestException $e) {
-            return view('error', ['message' => 'Proje verileri alınamadı: ' . $e->getMessage()]);
+            log_message('error', 'TickTick API hatası: ' . $e->getMessage(), [
+                'code' => $e->getCode(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return $this->response->setStatusCode(500)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => 'TickTick servisi ile iletişim sırasında bir hata oluştu',
+                    'detail' => $e->getMessage()
+                ]);
+
+        } catch (Exception $e) {
+            log_message('error', 'Genel hata: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return $this->response->setStatusCode(500)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => 'İşlem sırasında bir hata oluştu',
+                    'detail' => $e->getMessage()
+                ]);
         }
     }
 
-    // TickTick API'ye kullanıcıyı yönlendirir
-    public function authenticate()
-    {
-        $authUrl = "https://ticktick.com/oauth/authorize?" . http_build_query([
-            'scope' => 'tasks:read tasks:write',
-            'client_id' => $this->ticktickClientId,
-            'redirect_uri' => $this->redirectUri,
-            'response_type' => 'code',
-        ]);
-
-        return redirect()->to($authUrl);
-    }
-
-    // Callback işlemleri (Access Token alma)
-    public function callback()
-    {
-        $code = $this->request->getGet('code');
-        if (!$code) {
-            return redirect()->to('/ticktick/authenticate');
-        }
-
-        try {
-            $accessToken = $this->getAccessToken($code);
-            session()->set('ticktick_access_token', $accessToken);
-
-            file_put_contents($this->accessTokenFile, json_encode(['access_token' => $accessToken]));
-
-            return redirect()->to('/ticktick');
-        } catch (RequestException $e) {
-            return view('error', ['message' => 'Access Token alınamadı: ' . $e->getMessage()]);
-        }
-    }
-
-    // TickTick Listelerini çeker
     private function getTickTickLists($accessToken)
     {
         $client = new Client();
@@ -192,15 +199,10 @@ class TickTickController extends BaseController
 
     public function getListTasks($listId)
     {
-        // Access token'ı debug et
-        $accessToken = session()->get('ticktick_access_token');
-        log_message('info', 'Access Token: ' . $accessToken); // Token'ı logla
+        $accessToken = $this->getSavedAccessToken();
 
         if (!$accessToken) {
-            $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
-            if (!$accessToken) {
-                return redirect()->to('/ticktick/login')->with('error', 'Oturum açmanız gerekiyor.');
-            }
+            return redirect()->to('/ticktick/authenticate');
         }
 
         try {
@@ -249,125 +251,6 @@ class TickTickController extends BaseController
         }
     }
 
-    public function login()
-    {
-        try {
-            $cookieJar = new CookieJar();
-
-            $client = new Client();
-            $response = $client->post($this->loginUrl, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Referer' => 'https://ticktick.com/',
-                    'Accept' => 'application/json',
-                    'Origin' => 'https://ticktick.com',
-                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
-                ],
-                'json' => [
-                    'username' => $this->email,
-                    'password' => $this->password
-                ],
-                'verify' => false,
-                'cookies' => $cookieJar
-            ]);
-            unset($client);
-            $body = json_decode($response->getBody(), true);
-            $cookies = $response->getHeader("Set-Cookie");
-            // Cookie değerlerini birleştir
-            $cookieString = '';
-            if (!empty($cookies)) {
-                foreach ($cookies as $cookie) {
-                    $cookieString .= $cookie . '; ';
-                }
-            }
-            session()->set('ticktick_v2_access_cookie', $cookieString);
-
-            file_put_contents($this->ticktickV2AccessTokenFile, json_encode(['ticktick_v2_access_cookie' => $cookieString]));
-
-            if (!empty($body['token'])) {
-                session()->set('ticktick_v2_access_token', $body['token']);
-                log_message('warning', "Basarili bir sekilde giris yapildi");
-
-                return redirect()->to('/')->with('success', 'Giriş başarılı!');
-            } else {
-                return redirect()->to('/')->with('error', 'Giriş başarısız oldu. Lütfen bilgilerinizi kontrol edin.');
-            }
-        } catch (RequestException $e) {
-            // Hata ayrıntılarını logla
-            log_message('error', 'TickTick Login Error: ' . $e->getMessage());
-            if ($e->hasResponse()) {
-                log_message('error', 'Response Body: ' . $e->getResponse()->getBody());
-            }
-
-            return redirect()->to('/')->with('error', 'Login işlemi sırasında hata oluştu: ' . $e->getMessage());
-        }
-    }
-
-    private function loadMappings()
-    {
-        $jsonPath = WRITEPATH . '/data/mappings.json'; // JSON dosyasının yolu
-        if (!file_exists($jsonPath)) {
-            throw new \Exception('Mapping JSON dosyası bulunamadı.');
-        }
-
-        $jsonData = file_get_contents($jsonPath);
-        return json_decode($jsonData, true);
-    }
-
-    public function syncTasks()
-    {
-        $mappings = $this->loadMappings();
-        $accessToken = session()->get('ticktick_access_token');
-
-        if (!$accessToken) {
-            $accessToken = json_decode(file_get_contents($this->accessTokenFile), true)["access_token"];
-            if (!$accessToken) {
-                throw new \Exception('TickTick erişim tokeni bulunamadı.');
-            }
-        }
-
-        foreach ($mappings as $notionDatabaseId => $ticktickListId) {
-            $ticktickTasks = $this->getTickTickTasks($accessToken, $ticktickListId);
-            $localData = $this->loadLocalData($notionDatabaseId); // JSON'dan alınır
-
-            // Tamamlanmış görevleri kontrol et
-            foreach ($ticktickTasks['completed'] as $task) {
-                if (!isset($localData['completed'][$task['id']])) {
-                    $this->addToNotion($notionDatabaseId, $task); // Notion'a ekle
-                    $localData['completed'][$task['id']] = $task;
-                }
-            }
-
-            // Tamamlanmamış görevleri kontrol et
-            foreach ($ticktickTasks['uncompleted'] as $task) {
-                if (!isset($localData['uncompleted'][$task['id']])) {
-                    $this->addToNotion($notionDatabaseId, $task);
-                    $localData['uncompleted'][$task['id']] = $task;
-                }
-            }
-
-            // JSON'u güncelle
-            $this->saveLocalData($notionDatabaseId, $localData);
-        }
-    }
-
-    private function saveLocalData($databaseId, $data)
-    {
-        $filePath = WRITEPATH . "data/$databaseId.json";
-        file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
-    }
-
-    private function loadLocalData($databaseId)
-    {
-        $filePath = WRITEPATH . "data/$databaseId.json";
-        if (!file_exists($filePath)) {
-            return ['completed' => [], 'uncompleted' => []];
-        }
-    
-        $data = file_get_contents($filePath);
-        return json_decode($data, true);
-    }
-
     private function setTickTickListsToNotion($lists) {
         $status = $this->checkStatus();
         if ($status === "true") {
@@ -375,7 +258,7 @@ class TickTickController extends BaseController
             $result = ["success" => [], "errors" => []];
         
             if ($lists) {
-                $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2";
+                $url = "https://api.notion.com/v1/databases/".$this->notionDatabasedId;
         
                 try {
                     $client = new Client();
@@ -396,8 +279,6 @@ class TickTickController extends BaseController
                         throw new Exception("HTTP Hatası: $httpCode, Mevcut seçenekler alınamadı.");
                     }
         
-                    // Mevcut seçenekleri sakla (referanslar için dizinleme)
-                    $existingOptionsMap = array_column($existingOptions, null, 'description');
                     $newOptions = [];
                     // Seçenekleri güncelleme işlemi
                     foreach ($lists as $list) {
@@ -450,15 +331,12 @@ class TickTickController extends BaseController
                         ],
                         'json' => $data
                     ]);
-
-                    $resultAddTasksToNotion = $this->addTasksOfListsToNotion($lists);
                     
                     log_message('warning', "Başarılı bir şekilde Notion'a listeler gönderildi.");
 
                     $patchHttpCode = $patchResponse->getStatusCode();
                     if ($patchHttpCode >= 200 && $patchHttpCode < 300) {
-                        $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "task_messages" => $resultAddTasksToNotion['success']];
-                        // $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi.", "Task"];
+                        $result["success"][] = ["list_message" => "Listeler ve görevler başarıyla Notion'a gönderildi."];
                     } else {
                         throw new Exception("HTTP Hatası: $patchHttpCode, Seçenekler güncellenemedi.");
                     }
@@ -539,7 +417,7 @@ class TickTickController extends BaseController
                             };
 
                             $taskData = [
-                                "parent" => ["type" => "database_id", "database_id" => "1580ebdd798c809b8db4d4da56a193f2"],
+                                "parent" => ["type" => "database_id", "database_id" => $this->notionDatabasedId],
                                 "properties" => [
                                     "Name" => ["title" => [["type" => "text", "text" => ["content" => $task['title']]]]],
                                     "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]],
@@ -604,7 +482,7 @@ class TickTickController extends BaseController
     {
         $client = new Client();
         try {
-            $response = $client->request('POST', "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2/query", [
+            $response = $client->request('POST', "https://api.notion.com/v1/databases/".$this->notionDatabasedId."/query", [
                 'headers' => [
                     'Authorization' => "Bearer $this->notionToken",
                     'Content-Type' => 'application/json',
@@ -662,7 +540,7 @@ class TickTickController extends BaseController
     {
         $client = new Client();
         $existingTasks = [];
-        $url = "https://api.notion.com/v1/databases/1580ebdd798c809b8db4d4da56a193f2/query";
+        $url = "https://api.notion.com/v1/databases/".$this->notionDatabasedId."/query";
         $hasMore = true; // Sayfalama kontrolü
         $startCursor = null; // Sayfanın başlangıcı
 
@@ -756,6 +634,92 @@ class TickTickController extends BaseController
             return $closestName;
         }else{
             return "default";
+        }
+    }
+
+    //login with routes
+    public function login()
+    {
+        try {
+            $cookieJar = new CookieJar();
+
+            $client = new Client();
+            $response = $client->post($this->loginUrl, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Referer' => 'https://ticktick.com/',
+                    'Accept' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
+                    'X-Device' => '{"platform":"web","os":"Windows 10","device":"Firefox 133.0","name":"","version":6116,"id":"6707b3c671fc7f7b20499be8","channel":"website","campaign":"","websocket":""}'
+                ],
+                'json' => [
+                    'username' => $this->email,
+                    'password' => $this->password
+                ],
+                'verify' => false,
+                'cookies' => $cookieJar
+            ]);
+            unset($client);
+            $body = json_decode($response->getBody(), true);
+            $cookies = $response->getHeader("Set-Cookie");
+            // Cookie değerlerini birleştir
+            $cookieString = '';
+            if (!empty($cookies)) {
+                foreach ($cookies as $cookie) {
+                    $cookieString .= $cookie . '; ';
+                }
+            }
+            session()->set('ticktick_v2_access_cookie', $cookieString);
+
+            file_put_contents($this->ticktickV2AccessTokenFile, json_encode(['ticktick_v2_access_cookie' => $cookieString]));
+
+            if (!empty($body['token'])) {
+                session()->set('ticktick_v2_access_token', $body['token']);
+                log_message('warning', "Basarili bir sekilde giris yapildi");
+
+                return redirect()->to('/')->with('success', 'Giriş başarılı!');
+            } else {
+                return redirect()->to('/')->with('error', 'Giriş başarısız oldu. Lütfen bilgilerinizi kontrol edin.');
+            }
+        } catch (RequestException $e) {
+            // Hata ayrıntılarını logla
+            log_message('error', 'TickTick Login Error: ' . $e->getMessage());
+            if ($e->hasResponse()) {
+                log_message('error', 'Response Body: ' . $e->getResponse()->getBody());
+            }
+
+            return redirect()->to('/')->with('error', 'Login işlemi sırasında hata oluştu: ' . $e->getMessage());
+        }
+    }
+        // TickTick API'ye kullanıcıyı yönlendirir
+    public function authenticate()
+    {
+        $authUrl = "https://ticktick.com/oauth/authorize?" . http_build_query([
+            'scope' => 'tasks:read tasks:write',
+            'client_id' => $this->ticktickClientId,
+            'redirect_uri' => $this->redirectUri,
+            'response_type' => 'code',
+        ]);
+
+        return redirect()->to($authUrl);
+    }
+    // Callback işlemleri (Access Token alma)
+    public function callback()
+    {
+        $code = $this->request->getGet('code');
+        if (!$code) {
+            return redirect()->to('/ticktick/authenticate');
+        }
+
+        try {
+            $accessToken = $this->getAccessToken($code);
+            session()->set('ticktick_access_token', $accessToken);
+
+            file_put_contents($this->accessTokenFile, json_encode(['access_token' => $accessToken]));
+
+            return redirect()->to('/ticktick');
+        } catch (RequestException $e) {
+            return view('error', ['message' => 'Access Token alınamadı: ' . $e->getMessage()]);
         }
     }
 }
