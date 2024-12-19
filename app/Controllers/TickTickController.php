@@ -443,7 +443,7 @@ class TickTickController extends BaseController
                                     "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]],
                                     "Priority" => ["select" => ["name" => $priorityName]],
                                     "Category" => ["select" => ["name" => $list["name"]]],
-                                    "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complate"]],
+                                    "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplate" : "Complate"]],
                                     "Ticktick Id" => ["rich_text" => [["type" => "text", "text" => ["content" => $task['id'] ?? '']]]],
                                 ],
                                 "children" => [[
