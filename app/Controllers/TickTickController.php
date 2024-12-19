@@ -441,7 +441,6 @@ class TickTickController extends BaseController
                                     "Name" => ["title" => [["type" => "text", "text" => ["content" => $task['title']]]]],
                                     "Created Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['createdTime']))]],
                                     "Modified Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['modifiedTime']))]],
-                                    "Completed Time" => ["date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['completedTime']))]],
                                     "Priority" => ["select" => ["name" => $priorityName]],
                                     "Category" => ["select" => ["name" => $list["name"]]],
                                     "Status" => ["select" => ["name" => $task["status"] == "0" ? "Uncomplete" : "Complete"]],
@@ -454,6 +453,13 @@ class TickTickController extends BaseController
                                     ]
                                 ]]
                             ];
+                            
+                            if (isset($task['completedTime'])) {
+                                $taskData['properties']["Completed Time"] = [
+                                    "date" => ["start" => date('Y-m-d\TH:i:s.000\Z', strtotime($task['completedTime']))]
+                                ];
+                            }
+                            
 
                             yield new Request(
                                 'POST',
