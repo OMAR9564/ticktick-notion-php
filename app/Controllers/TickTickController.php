@@ -223,8 +223,27 @@ class TickTickController extends BaseController
                 ],
             ]);
 
+            $activeTasks = json_decode($activeResponse->getBody(), true);
+
+            // Status 2 olan görevleri activeTasks'dan temizle
+            $activeTasks = array_filter($activeTasks, function($task) {
+                return !isset($task['status']) || $task['status'] != 2;
+            });
+
+            // Benzer şekilde completed tasks için de log ekle
+            $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$listId/completed", [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Referer' => 'https://ticktick.com/',
+                    'Accept' => 'application/json',
+                    'Origin' => 'https://ticktick.com',
+                    'Cookie' => $ticktickV2AccessCookie,
+                ],
+            ]);
+            unset($client);
+            $completedTasks = json_decode($completedResponse->getBody(), true);
             
-            $allTasks = json_decode($activeResponse->getBody(), true);
+            $allTasks = array_merge($activeTasks ?? [], $completedTasks ?? []);
 
             $allTasks = [
                 'allTasks' => $allTasks ?? [],
