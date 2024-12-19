@@ -222,24 +222,10 @@ class TickTickController extends BaseController
             ]);
 
             
-            $activeTasks = json_decode($activeResponse->getBody(), true);
-            
-            // Benzer şekilde completed tasks için de log ekle
-            $completedResponse = $client->get("https://api.ticktick.com/api/v2/project/$listId/completed", [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Referer' => 'https://ticktick.com/',
-                    'Accept' => 'application/json',
-                    'Origin' => 'https://ticktick.com',
-                    'Cookie' => $ticktickV2AccessCookie,
-                ],
-            ]);
-            unset($client);
-            $completedTasks = json_decode($completedResponse->getBody(), true);
+            $allTasks = json_decode($activeResponse->getBody(), true);
 
             $allTasks = [
-                'uncompleted' => $activeTasks ?? [],
-                'completed' => $completedTasks ?? [],
+                'allTasks' => $allTasks ?? [],
             ];
             log_message('warning', "Basarili bir sekilde Listelerin tasklari alindi");
 
@@ -505,7 +491,7 @@ class TickTickController extends BaseController
                 log_message('info', "Liste işleniyor: {$list['name']}");
                 
                 // Mevcut Notion görevlerini al
-                $existingTasks = $this->getExistingTasksFromNotion("🎲To Do");
+                $existingTasks = $this->getExistingTasksFromNotion($list['name']);
 
                 // Bugünün görevlerini belirle
                 $listTasks = $this->getListTasks($list["id"]);
@@ -514,13 +500,16 @@ class TickTickController extends BaseController
                     continue;
                 }
 
-                $allTasks = array_merge($listTasks['uncompleted'], $listTasks['completed']);
+                $allTasks = $listTasks['allTasks'];
                 $todayTasks = array_filter($allTasks, function ($task) use ($today) {
                     return date('Y-m-d', strtotime($task['modifiedTime'])) === $today;
                 });
 
-                print_r($existingTasks);
-                exit;
+                // Mevcut görevleri `allTasks` ve `todayTasks`'tan çıkar
+                $filteredAllTasks = array_filter($allTasks, function ($task) use ($existingTasks) {
+                    return !isset($existingTasks[$task['id']]);
+                });
+
 
                 // Notion'daki mevcut görevleri sil
                 foreach ($todayTasks as $task) {
@@ -532,8 +521,10 @@ class TickTickController extends BaseController
                     
                 }
 
+                $finalTasks = array_merge($todayTasks, $filteredAllTasks);
+
                 // Görevleri yeniden ekle
-                $taskGroups = array_chunk($todayTasks, $groupSize);
+                $taskGroups = array_chunk($finalTasks, $groupSize);
 
                 foreach ($taskGroups as $groupIndex => $taskGroup) {
                     log_message('info', "Görev grubu işleniyor. Grup: {$groupIndex}, Görev sayısı: " . count($taskGroup));
